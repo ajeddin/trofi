@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
+import AppIntents
 
 struct FirstExpandedView: View {
     
     var namespace: Namespace.ID
     @State private var textField: String = ""
     @State private var appear: Bool = false
-    @EnvironmentObject var viewModel: HomeViewModel     
-    
+    @EnvironmentObject var viewModel: HomeViewModel
+    @State var selection = 0
+    @State private var title: String = ""
+
+
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea()
+            Color.gray900.ignoresSafeArea()
             ZStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack {
@@ -24,6 +28,8 @@ struct FirstExpandedView: View {
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundStyle(.gray0)
+                        
+                        
                         
                         Spacer()
                         Button(action: {
@@ -35,7 +41,7 @@ struct FirstExpandedView: View {
                             withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
 //                                viewModel.showItems = false
 //                                withAnimation(.spring(response: 0.88, dampingFraction: 0.9)) {
-                                    viewModel.showItems = false
+//                                    viewModel.showItems = false
                                 viewModel.moveItems = false
 //                                }
                             }
@@ -53,9 +59,35 @@ struct FirstExpandedView: View {
                     }
                     VStack{
                         Spacer()
+                        Picker("", selection: $selection) {
+                            Text("Homecooked").tag(0)                        .foregroundColor(Color.accentColor)
+                                .background(Color.accentColor)
+                            Text("Restaurant").tag(1)                        .foregroundColor(Color.accentColor)
 
-                        Text("Sample").foregroundColor(.white)
+                        }
+                        .foregroundColor(Color.accentColor)
+                        .pickerStyle(.segmented)
+//                        .overlay(RoundedRectangle(cornerRadius: 15)
+//                                    .stroke(Color.gray, lineWidth: 4)
+//                            )
+                        .colorMultiply(Color.accentColor)
+                        .frame(width: 350)
+
                         Spacer()
+
+                        TextField(
+                                "Title",
+                                text: $title
+                            )
+                        .border(.secondary).frame(width: 350).foregroundColor(.accentColor)
+                        .textFieldStyle(.roundedBorder)
+
+                        
+                        
+                        Spacer()
+                        Spacer()
+
+
                     }
                 }
                 .padding(.horizontal, 20)
@@ -90,7 +122,7 @@ struct FirstExpandedView: View {
                         .foregroundStyle(.gray0)
                     
                         .frame(width: 300, height: 56, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .clipShape(RoundedRectangle(cornerRadius: 40, style: .continuous)) 
+                        .clipShape(RoundedRectangle(cornerRadius: 40, style: .continuous))
                         .overlay(
                                     Text("Confirm")
                                         .foregroundColor(.black) // Set the text color
@@ -106,7 +138,7 @@ struct FirstExpandedView: View {
         .fontDesign(.rounded)
         .background(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(Color("AccentColor"))
+                .fill(.gray900)
                 .matchedGeometryEffect(id: "background", in: namespace)
         )
         .mask({
@@ -120,7 +152,7 @@ struct FirstExpandedView: View {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.85, blendDuration: 1)) {
                 appear = true
             }
-        })  
+        })
     }
 }
 
@@ -132,7 +164,3 @@ struct FirstExpandedView_Preview: PreviewProvider {
             .environmentObject(HomeViewModel())
     }
 }
-
-
-
-

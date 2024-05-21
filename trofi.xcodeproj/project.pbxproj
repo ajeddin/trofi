@@ -24,7 +24,39 @@
 		213987712BFB98350050214E /* FirstExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2139876E2BFB98350050214E /* FirstExpandedView.swift */; };
 		213987722BFB98CF0050214E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987642BFB978A0050214E /* Colors.swift */; };
 		213987742BFB9CC20050214E /* viewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987732BFB9CC20050214E /* viewController.swift */; };
+		218630142BFCE19600599708 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218630132BFCE19600599708 /* WidgetKit.framework */; };
+		218630162BFCE19600599708 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218630152BFCE19600599708 /* SwiftUI.framework */; };
+		218630192BFCE19600599708 /* LogDIshWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218630182BFCE19600599708 /* LogDIshWidgetBundle.swift */; };
+		2186301B2BFCE19600599708 /* LogDIshWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186301A2BFCE19600599708 /* LogDIshWidgetLiveActivity.swift */; };
+		2186301D2BFCE19600599708 /* LogDIshWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186301C2BFCE19600599708 /* LogDIshWidget.swift */; };
+		2186301F2BFCE19600599708 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186301E2BFCE19600599708 /* AppIntent.swift */; };
+		218630212BFCE19700599708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218630202BFCE19700599708 /* Assets.xcassets */; };
+		218630252BFCE19700599708 /* LogDIshWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 218630112BFCE19600599708 /* LogDIshWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		218630232BFCE19700599708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2139871E2BFB767C0050214E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 218630102BFCE19600599708;
+			remoteInfo = LogDIshWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		218630262BFCE19700599708 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				218630252BFCE19700599708 /* LogDIshWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		213987262BFB767C0050214E /* trofi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trofi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +78,16 @@
 		2139876C2BFB98350050214E /* SecondExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondExpandedView.swift; sourceTree = "<group>"; };
 		2139876E2BFB98350050214E /* FirstExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstExpandedView.swift; sourceTree = "<group>"; };
 		213987732BFB9CC20050214E /* viewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
+		218630112BFCE19600599708 /* LogDIshWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LogDIshWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		218630132BFCE19600599708 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		218630152BFCE19600599708 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		218630182BFCE19600599708 /* LogDIshWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDIshWidgetBundle.swift; sourceTree = "<group>"; };
+		2186301A2BFCE19600599708 /* LogDIshWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDIshWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		2186301C2BFCE19600599708 /* LogDIshWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDIshWidget.swift; sourceTree = "<group>"; };
+		2186301E2BFCE19600599708 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		218630202BFCE19700599708 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		218630222BFCE19700599708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2186302A2BFCE3A400599708 /* dala-floda-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dala-floda-medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +98,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2186300E2BFCE19600599708 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				218630162BFCE19600599708 /* SwiftUI.framework in Frameworks */,
+				218630142BFCE19600599708 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -63,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				213987282BFB767C0050214E /* trofiApp */,
+				218630172BFCE19600599708 /* LogDIshWidget */,
+				218630122BFCE19600599708 /* Frameworks */,
 				213987272BFB767C0050214E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				213987262BFB767C0050214E /* trofi.app */,
+				218630112BFCE19600599708 /* LogDIshWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +194,29 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		218630122BFCE19600599708 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				218630132BFCE19600599708 /* WidgetKit.framework */,
+				218630152BFCE19600599708 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		218630172BFCE19600599708 /* LogDIshWidget */ = {
+			isa = PBXGroup;
+			children = (
+				2186302A2BFCE3A400599708 /* dala-floda-medium.ttf */,
+				218630182BFCE19600599708 /* LogDIshWidgetBundle.swift */,
+				2186301A2BFCE19600599708 /* LogDIshWidgetLiveActivity.swift */,
+				2186301C2BFCE19600599708 /* LogDIshWidget.swift */,
+				2186301E2BFCE19600599708 /* AppIntent.swift */,
+				218630202BFCE19700599708 /* Assets.xcassets */,
+				218630222BFCE19700599708 /* Info.plist */,
+			);
+			path = LogDIshWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,15 +227,34 @@
 				213987222BFB767C0050214E /* Sources */,
 				213987232BFB767C0050214E /* Frameworks */,
 				213987242BFB767C0050214E /* Resources */,
+				218630262BFCE19700599708 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				218630242BFCE19700599708 /* PBXTargetDependency */,
 			);
 			name = trofi;
 			productName = trofiApp;
 			productReference = 213987262BFB767C0050214E /* trofi.app */;
 			productType = "com.apple.product-type.application";
+		};
+		218630102BFCE19600599708 /* LogDIshWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 218630292BFCE19700599708 /* Build configuration list for PBXNativeTarget "LogDIshWidgetExtension" */;
+			buildPhases = (
+				2186300D2BFCE19600599708 /* Sources */,
+				2186300E2BFCE19600599708 /* Frameworks */,
+				2186300F2BFCE19600599708 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogDIshWidgetExtension;
+			productName = LogDIshWidgetExtension;
+			productReference = 218630112BFCE19600599708 /* LogDIshWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -171,6 +267,9 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					213987252BFB767C0050214E = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					218630102BFCE19600599708 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
@@ -189,6 +288,7 @@
 			projectRoot = "";
 			targets = (
 				213987252BFB767C0050214E /* trofi */,
+				218630102BFCE19600599708 /* LogDIshWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -201,6 +301,14 @@
 				213987312BFB767D0050214E /* Preview Assets.xcassets in Resources */,
 				213987462BFB80F60050214E /* dala-floda-medium.ttf in Resources */,
 				2139872E2BFB767D0050214E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2186300F2BFCE19600599708 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				218630212BFCE19700599708 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +336,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2186300D2BFCE19600599708 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2186301D2BFCE19600599708 /* LogDIshWidget.swift in Sources */,
+				2186301F2BFCE19600599708 /* AppIntent.swift in Sources */,
+				218630192BFCE19600599708 /* LogDIshWidgetBundle.swift in Sources */,
+				2186301B2BFCE19600599708 /* LogDIshWidgetLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		218630242BFCE19700599708 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 218630102BFCE19600599708 /* LogDIshWidgetExtension */;
+			targetProxy = 218630232BFCE19700599708 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		213987322BFB767D0050214E /* Debug */ = {
@@ -353,6 +480,7 @@
 		213987352BFB767D0050214E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -383,6 +511,7 @@
 		213987362BFB767D0050214E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -410,6 +539,60 @@
 			};
 			name = Release;
 		};
+		218630272BFCE19700599708 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42NWXG687M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LogDIshWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LogDIshWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.LogDIshWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		218630282BFCE19700599708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42NWXG687M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LogDIshWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LogDIshWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.LogDIshWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -427,6 +610,15 @@
 			buildConfigurations = (
 				213987352BFB767D0050214E /* Debug */,
 				213987362BFB767D0050214E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		218630292BFCE19700599708 /* Build configuration list for PBXNativeTarget "LogDIshWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				218630272BFCE19700599708 /* Debug */,
+				218630282BFCE19700599708 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
