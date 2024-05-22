@@ -69,41 +69,41 @@ struct HomeView_Preview: PreviewProvider {
     }
 }
 
-struct ExpandView: View {
-    let expand: ExpandSection
-
-    var body: some View {
-        HStack(alignment: .top, spacing: 16) {
-            Image(systemName: expand.imageName)
-                .font(.body)
-                .fontWeight(.semibold)
-                .padding(8)
-                .foregroundStyle(Color("AccentColor"))
-                .background(expand.backgroundColor.gradient)
-                .clipShape(Circle())
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text(expand.title)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .foregroundStyle(Color("AccentColor"))
-
-                Text(expand.description)
-                    .font(.callout)
-                    .foregroundStyle(Color("AccentColor"))
-            }
-        }
-        .fontDesign(.rounded)
-        .padding(16)
-        .frame(width: 336, alignment: .leading)
-        .background(Color("AccentColor").opacity(0.6))
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .stroke(Color("AccentColor"), lineWidth: 0.7)
-        }
-    }
-}
+//struct ExpandView: View {
+//    let expand: ExpandSection
+//
+//    var body: some View {
+//        HStack(alignment: .top, spacing: 16) {
+//            Image(systemName: expand.imageName)
+//                .font(.body)
+//                .fontWeight(.semibold)
+//                .padding(8)
+//                .foregroundStyle(Color("AccentColor"))
+//                .background(expand.backgroundColor.gradient)
+//                .clipShape(Circle())
+//
+//            VStack(alignment: .leading, spacing: 4) {
+//                Text(expand.title)
+//                    .font(.title3)
+//                    .fontWeight(.bold)
+//                    .foregroundStyle(Color("AccentColor"))
+//
+//                Text(expand.description)
+//                    .font(.callout)
+//                    .foregroundStyle(Color("AccentColor"))
+//            }
+//        }
+//        .fontDesign(.rounded)
+//        .padding(16)
+//        .frame(width: 336, alignment: .leading)
+//        .background(Color("AccentColor").opacity(0.6))
+//        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+//        .overlay {
+//            RoundedRectangle(cornerRadius: 16, style: .continuous)
+//                .stroke(Color("AccentColor"), lineWidth: 0.7)
+//        }
+//    }
+//}
 
 
 extension homePage {
@@ -122,7 +122,7 @@ extension homePage {
                 .fontWeight(.semibold)
                 .foregroundStyle(.gray0)
                 .padding(16)
-        }.background(Color("AccentColor"))
+        }
 
     }
     
@@ -144,7 +144,7 @@ extension homePage {
                                         }
                                         
                                     } label: {
-                                        ExpandView(expand: section[index])
+//                                        ExpandView(expand: section[index])
                                     }
                                     .buttonStyle(BouncyButton())
                                 }
@@ -178,38 +178,44 @@ extension homePage {
                     HStack{
                         Text("trofi")
                             .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
-
+                            .kerning(4)
                         
                         Spacer()
                     }
                     //
+                    
                     Divider().frame(height: 1)
-                    DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-                        .padding(.horizontal)
-                        .datePickerStyle(.graphical)
+                    ZStack{
+                        Color.accentColor.opacity(0.1).cornerRadius(14)
+                        
+                        DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+                        //                        .padding(.horizontal)
+                            .datePickerStyle(.graphical)
+                    }
+//                    .background(Color("AccentColor").opacity(0.1))
                     Divider()
                     
                     
                 }
                 .padding(.top, 24)
                 ScrollView {
-                    Text("hello")
+                    
                   
                 }
             }
 //            .frame(maxWidth: .infinity)
 
             .scrollIndicators(.hidden)
-            .scaleEffect(viewModel.moveItems ? 0.8 : 1, anchor: .bottom)
+//            .scaleEffect(viewModel.moveItems ? 0.8 : 1, anchor: .bottom)
         }
         )
         .padding(.horizontal, 20)
         .background(.gray0)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.55, dampingFraction: 0.85, blendDuration: 1)) {
-                viewModel.showItems = false
-            }
-        }
+//        .onTapGesture {
+//            withAnimation(.spring(response: 0.55, dampingFraction: 0.85, blendDuration: 1)) {
+//                viewModel.showItems = false
+//            }
+//        }
 
     }
 }
