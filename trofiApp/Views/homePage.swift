@@ -38,7 +38,7 @@ struct homePage: View {
                      if let index = viewModel.selectedExpandIndex {
                          switch index {
                          case 0:
-                             FirstExpandedView(namespace: namespace)
+                             FirstExpandedView(namespace: namespace, rating: 1, maxRating: 5)
 //                         case 1:
 //                             SecondExpandedView(namespace: namespace)
 //    
@@ -112,7 +112,7 @@ extension homePage {
             HapticManager.instance.impact(style: .light)
             print(viewModel.selectedExpandIndex)
             withAnimation(.spring(response: 0.25, dampingFraction: 0.85, blendDuration: 1)) {
-//                viewModel.showItems = true
+                viewModel.showItems = true
                 viewModel.selectedExpandIndex=0;
             }
             

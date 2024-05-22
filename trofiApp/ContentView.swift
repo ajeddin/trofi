@@ -12,7 +12,7 @@ struct ContentView: View {
     @Namespace var namespace
 
     var body: some View {
-        if (viewModel.moveItems == true){
+        if (viewModel.showItems == true){
             TabView {
                 
                 homePage(namespace: namespace, expand: ExpandSection(title: "Send", description: "Send tokens or collectibles to any address or ENS username.", imageName: "paperplane.fill", backgroundColor: .blue))
