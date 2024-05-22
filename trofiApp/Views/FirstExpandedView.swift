@@ -8,6 +8,8 @@
 import SwiftUI
 import AppIntents
 import UIKit
+import PhotosUI
+
 
 struct FirstExpandedView: View {
     
@@ -119,6 +121,7 @@ struct FirstExpandedView: View {
                         }
                         .sheet(isPresented: $showImagePicker) {
                             ImagePicker(sourceType: sourceType)
+                                .ignoresSafeArea()
                         }
                         
                         
@@ -283,6 +286,10 @@ struct FirstExpandedView: View {
             let picker = UIImagePickerController()
             picker.sourceType = sourceType
             picker.delegate = context.coordinator
+//            picker.modalPresentationStyle = .fullScreen
+//            picker.edgesForExtendedLayout = []
+
+
             return picker
         }
 
