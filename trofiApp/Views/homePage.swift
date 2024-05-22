@@ -38,7 +38,7 @@ struct homePage: View {
                      if let index = viewModel.selectedExpandIndex {
                          switch index {
                          case 0:
-                             FirstExpandedView(namespace: namespace, rating: 1, maxRating: 5)
+                             FirstExpandedView(namespace: namespace)
 //                         case 1:
 //                             SecondExpandedView(namespace: namespace)
 //    

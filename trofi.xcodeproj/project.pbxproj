@@ -19,7 +19,7 @@
 		2139874E2BFB919F0050214E /* recipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2139874D2BFB919F0050214E /* recipeView.swift */; };
 		213987662BFB978A0050214E /* BouncyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987632BFB978A0050214E /* BouncyButton.swift */; };
 		213987682BFB978A0050214E /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987652BFB978A0050214E /* HapticsManager.swift */; };
-		2139876B2BFB97B10050214E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2139876A2BFB97B10050214E /* Model.swift */; };
+		2139876B2BFB97B10050214E /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2139876A2BFB97B10050214E /* ButtonModel.swift */; };
 		2139876F2BFB98350050214E /* SecondExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2139876C2BFB98350050214E /* SecondExpandedView.swift */; };
 		213987712BFB98350050214E /* FirstExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2139876E2BFB98350050214E /* FirstExpandedView.swift */; };
 		213987722BFB98CF0050214E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987642BFB978A0050214E /* Colors.swift */; };
@@ -32,6 +32,7 @@
 		2186301F2BFCE19600599708 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186301E2BFCE19600599708 /* AppIntent.swift */; };
 		218630212BFCE19700599708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218630202BFCE19700599708 /* Assets.xcassets */; };
 		218630252BFCE19700599708 /* LogDIshWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 218630112BFCE19600599708 /* LogDIshWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2186302C2BFE302600599708 /* ClassModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186302B2BFE302600599708 /* ClassModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +75,7 @@
 		213987632BFB978A0050214E /* BouncyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyButton.swift; sourceTree = "<group>"; };
 		213987642BFB978A0050214E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		213987652BFB978A0050214E /* HapticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
-		2139876A2BFB97B10050214E /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		2139876A2BFB97B10050214E /* ButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
 		2139876C2BFB98350050214E /* SecondExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondExpandedView.swift; sourceTree = "<group>"; };
 		2139876E2BFB98350050214E /* FirstExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstExpandedView.swift; sourceTree = "<group>"; };
 		213987732BFB9CC20050214E /* viewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
@@ -88,6 +89,8 @@
 		218630202BFCE19700599708 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		218630222BFCE19700599708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2186302A2BFCE3A400599708 /* dala-floda-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dala-floda-medium.ttf"; sourceTree = "<group>"; };
+		2186302B2BFE302600599708 /* ClassModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassModels.swift; sourceTree = "<group>"; };
+		2186302D2BFE307100599708 /* trofi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = trofi.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,7 @@
 		2139871D2BFB767C0050214E = {
 			isa = PBXGroup;
 			children = (
+				2186302D2BFE307100599708 /* trofi.entitlements */,
 				213987282BFB767C0050214E /* trofiApp */,
 				218630172BFCE19600599708 /* LogDIshWidget */,
 				218630122BFCE19600599708 /* Frameworks */,
@@ -189,7 +193,8 @@
 		213987692BFB97920050214E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2139876A2BFB97B10050214E /* Model.swift */,
+				2139876A2BFB97B10050214E /* ButtonModel.swift */,
+				2186302B2BFE302600599708 /* ClassModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,11 +331,12 @@
 				213987712BFB98350050214E /* FirstExpandedView.swift in Sources */,
 				2139874A2BFB91700050214E /* insightsView.swift in Sources */,
 				2139872C2BFB767C0050214E /* ContentView.swift in Sources */,
+				2186302C2BFE302600599708 /* ClassModels.swift in Sources */,
 				2139872A2BFB767C0050214E /* trofiAppApp.swift in Sources */,
 				2139876F2BFB98350050214E /* SecondExpandedView.swift in Sources */,
 				213987722BFB98CF0050214E /* Colors.swift in Sources */,
 				213987482BFB91630050214E /* homePage.swift in Sources */,
-				2139876B2BFB97B10050214E /* Model.swift in Sources */,
+				2139876B2BFB97B10050214E /* ButtonModel.swift in Sources */,
 				213987682BFB978A0050214E /* HapticsManager.swift in Sources */,
 				2139874C2BFB91910050214E /* galleryView.swift in Sources */,
 			);
@@ -483,6 +489,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = trofi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"trofiApp/Preview Content\"";
@@ -514,6 +521,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = trofi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"trofiApp/Preview Content\"";
