@@ -7,9 +7,10 @@
 
 import SwiftUI
 import AppIntents
-
+import SwiftData
 struct FirstExpandedView: View {
-    
+    @Environment(\.modelContext) private var context
+    @Query private var loggedMeals: [LoggedMeals];
     var namespace: Namespace.ID
     @State private var textField: String = ""
     @State private var appear: Bool = false
@@ -18,8 +19,9 @@ struct FirstExpandedView: View {
     @State private var title: String = ""
     @State private var recipe: String = ""
     @State private var notes: String = ""
-    @State var rating: CGFloat
-    var maxRating: Int
+
+    @State var rating: CGFloat = 1;
+    var maxRating: Int = 0
 
     
     
@@ -54,27 +56,22 @@ struct FirstExpandedView: View {
                         
                         Spacer()
                         Button(action: {
-                            withAnimation(.spring(response: 0.25, dampingFraction: 1.25)) {
-                                viewModel.showItems = true
+                            withAnimation(.spring(response: 0.75, dampingFraction: 1.2)) {
+                                viewModel.showItems = false
                                 HapticManager.instance.impact(style: .light)
                                 viewModel.selectedExpandIndex = nil
                             }
-                            withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
-                                //                                viewModel.showItems = false
-                                //                                withAnimation(.spring(response: 0.88, dampingFraction: 0.9)) {
-                                //                                    viewModel.showItems = false
-                                viewModel.moveItems = false
-                                //                                }
-                            }
-                            //                            viewModel.moveItems = false
-                            
+//                            withAnimation(.spring(response: 0.18, dampingFraction: 1.0)) {
+//                                 viewModel.showItems = false
+//                            }
+                           
                         }, label: {
                             Image(systemName: "xmark")
                                 .renderingMode(.template)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.gray100)
                                 .padding(12)
-                                .background(.gray800)
+                                .background(Color.accentColor)
                                 .cornerRadius(32)
                         })
                     }
@@ -165,20 +162,10 @@ struct FirstExpandedView: View {
               
 
                 Button(action: {
-                    //                    withAnimation(.spring(response: 0.25, dampingFraction: 1.2)) {
-                    ////                        viewModel.showItems = true
-                    //                        HapticManager.instance.impact(style: .light)
-                    //                        viewModel.selectedExpandIndex = nil
-                    //                    }
-                    
+           
                     withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
                         HapticManager.instance.impact(style: .light)
                         viewModel.selectedExpandIndex = nil
-                        //
-                        
-                        //                                withAnimation(.spring(response: 0.88, dampingFraction: 0.9)) {
-                        //                                    viewModel.showItems = false
-                        //                                }
                         viewModel.showItems = false
                         viewModel.moveItems = false
                         
@@ -230,7 +217,7 @@ struct FirstExpandedView_Preview: PreviewProvider {
     @Namespace static var namespace
     
     static var previews: some View {
-        FirstExpandedView(namespace: namespace, rating: 1.7, maxRating: 5)
+        FirstExpandedView(namespace: namespace)
             .environmentObject(HomeViewModel())
     }
 }
