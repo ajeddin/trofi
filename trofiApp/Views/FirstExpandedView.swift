@@ -11,6 +11,46 @@ import UIKit
 import PhotosUI
 
 
+
+
+struct ImagePicker: UIViewControllerRepresentable {
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        let parent: ImagePicker
+
+        init(parent: ImagePicker) {
+            self.parent = parent
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let image = info[.originalImage] as? UIImage {
+                parent.selectedImage = image
+            }
+
+            parent.presentationMode.wrappedValue.dismiss()
+        }
+    }
+
+    var sourceType: UIImagePickerController.SourceType
+    @Binding var selectedImage: UIImage?
+    @Environment(\.presentationMode) var presentationMode
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
+    }
+
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        picker.sourceType = sourceType
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+}
+
+
+
+
 struct FirstExpandedView: View {
     
     var namespace: Namespace.ID
@@ -23,12 +63,11 @@ struct FirstExpandedView: View {
     @State private var notes: String = ""
     @State var rating: CGFloat = 0
     var maxRating: Int = 5
-    
+    @State private var selectedImage: UIImage?
+//    @State private var selectedImageData: Data?
     @State private var showActionSheet = false
     @State private var showImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    
-    
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -66,17 +105,11 @@ struct FirstExpandedView: View {
                         Spacer()
                         Button(action: {
                             withAnimation(.spring(response: 0.25, dampingFraction: 1.25)) {
-                                viewModel.showItems = true
+                                viewModel.showItems = false
                                 HapticManager.instance.impact(style: .light)
                                 viewModel.selectedExpandIndex = nil
                             }
-                            withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
-                                //                                viewModel.showItems = false
-                                //                                withAnimation(.spring(response: 0.88, dampingFraction: 0.9)) {
-                                //                                    viewModel.showItems = false
-                                viewModel.moveItems = false
-                                //                                }
-                            }
+                          
                             //                            viewModel.moveItems = false
                             
                         }, label: {
@@ -85,7 +118,7 @@ struct FirstExpandedView: View {
                                 .fontWeight(.semibold)
                                 .foregroundColor(.gray100)
                                 .padding(12)
-                                .background(.gray800)
+                                .background(Color.accentColor)
                                 .cornerRadius(32)
                         })
                     }
@@ -94,36 +127,52 @@ struct FirstExpandedView: View {
 //                    Spacer()
                     VStack(spacing: 16) {
                         
-                        
-                        Button {
-                            print("photo button was tapped")
-                            showActionSheet = true
+                        VStack{
+//                                                        PhotosPicker(selection: $selectedImage, matching: .images,
+//                                                                     photoLibrary: .shared()){
+//                                                            if let selectedImageData, let uiImage = UIImage(data: selectedImageData){
+//                                                                Image(uiImage: uiImage)
+//                                                                    .resizable()
+//                                                                    .scaledToFit()
+//                                                            }else{
+//                                                                Image(systemName: "photo")
+//                            
+//                                                            }
+//                                                        }
+//
+                            if let image = selectedImage{
+                                Image(uiImage: image).resizable().scaledToFit()
+                            }
+                            else{
+                                Button {
+                                    showActionSheet = true
+                                    
+                                } label: {
+                                    ZStack{
+                                        Rectangle()
+                                            .fill(Color.accentColor.opacity(0.1))
+                                            .cornerRadius(14)
+                                        Image(systemName: "photo.badge.plus").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                    }}
+                                .actionSheet(isPresented: $showActionSheet) {
+                                    ActionSheet(title: Text("Select an option"), buttons: [
+                                        .default(Text("Select from Gallery")) {
+                                            sourceType = .photoLibrary
+                                            showImagePicker = true
+                                        },
+                                        .default(Text("Camera")) {
+                                            sourceType = .camera
+                                            showImagePicker = true
+                                        },
+                                        .cancel()
+                                    ])
+                                }
+                                .sheet(isPresented: $showImagePicker) {
+                                    ImagePicker(sourceType: sourceType, selectedImage: $selectedImage)
+                                }
+                            }
                             
-                        } label: {
-                            ZStack{
-                                Rectangle()
-                                    .fill(Color.accentColor.opacity(0.1))
-                                    .cornerRadius(14)
-                                Image(systemName: "photo.badge.plus").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                            }}
-                        .actionSheet(isPresented: $showActionSheet) {
-                            ActionSheet(title: Text("Select an option"), buttons: [
-                                .default(Text("Select from Gallery")) {
-                                    sourceType = .photoLibrary
-                                    showImagePicker = true
-                                },
-                                .default(Text("Camera")) {
-                                    sourceType = .camera
-                                    showImagePicker = true
-                                },
-                                .cancel()
-                            ])
                         }
-                        .sheet(isPresented: $showImagePicker) {
-                            ImagePicker(sourceType: sourceType)
-                                .ignoresSafeArea()
-                        }
-                        
                         
                         VStack{
                             Spacer()
@@ -278,47 +327,43 @@ struct FirstExpandedView: View {
     
     
 }
-    
-    struct ImagePicker: UIViewControllerRepresentable {
-        var sourceType: UIImagePickerController.SourceType
-
-        func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-            let picker = UIImagePickerController()
-            picker.sourceType = sourceType
-            picker.delegate = context.coordinator
-//            picker.modalPresentationStyle = .fullScreen
-//            picker.edgesForExtendedLayout = []
-
-
-            return picker
-        }
-
-        func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
-
-        func makeCoordinator() -> Coordinator {
-            Coordinator(self)
-        }
-
-        class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-            let parent: ImagePicker
-
-            init(_ parent: ImagePicker) {
-                self.parent = parent
-            }
-
-            func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-                // Handle the selected image
-                picker.dismiss(animated: true)
-            }
-
-            func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-                picker.dismiss(animated: true)
-            }
-        }
-    }
-    
-    
-    
+//    
+//    struct ImagePicker: UIViewControllerRepresentable {
+//        var sourceType: UIImagePickerController.SourceType
+//
+//        func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+//            let picker = UIImagePickerController()
+//            picker.sourceType = sourceType
+//            picker.delegate = context.coordinator
+//            return picker
+//        }
+//
+//        func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
+//
+//        func makeCoordinator() -> Coordinator {
+//            Coordinator(self)
+//        }
+//
+//        class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+//            let parent: ImagePicker
+//
+//            init(_ parent: ImagePicker) {
+//                self.parent = parent
+//            }
+//
+//            func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+//                // Handle the selected image
+//                picker.dismiss(animated: true)
+//            }
+//
+//            func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//                picker.dismiss(animated: true)
+//            }
+//        }
+//    }
+//    
+//    
+//    
     
     
     
