@@ -9,10 +9,8 @@ import SwiftUI
 import AppIntents
 import UIKit
 
-import SwiftData
 struct FirstExpandedView: View {
-    @Environment(\.modelContext) private var context
-    @Query private var loggedMeals: [LoggedMeals];
+    
     var namespace: Namespace.ID
     @State private var textField: String = ""
     @State private var appear: Bool = false
@@ -21,7 +19,9 @@ struct FirstExpandedView: View {
     @State private var title: String = ""
     @State private var recipe: String = ""
     @State private var notes: String = ""
-
+    @State var rating: CGFloat = 0
+    var maxRating: Int = 5
+    
     @State private var showActionSheet = false
     @State private var showImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
@@ -32,10 +32,7 @@ struct FirstExpandedView: View {
         formatter.numberStyle = .decimal
         return formatter
     }()
-
-    @State var rating: CGFloat = 1;
-    var maxRating: Int = 0
-
+    
     
     var body: some View {
         
@@ -66,22 +63,27 @@ struct FirstExpandedView: View {
                         
                         Spacer()
                         Button(action: {
-                            withAnimation(.spring(response: 0.75, dampingFraction: 1.2)) {
-                                viewModel.showItems = false
+                            withAnimation(.spring(response: 0.25, dampingFraction: 1.25)) {
+                                viewModel.showItems = true
                                 HapticManager.instance.impact(style: .light)
                                 viewModel.selectedExpandIndex = nil
                             }
-//                            withAnimation(.spring(response: 0.18, dampingFraction: 1.0)) {
-//                                 viewModel.showItems = false
-//                            }
-                           
+                            withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
+                                //                                viewModel.showItems = false
+                                //                                withAnimation(.spring(response: 0.88, dampingFraction: 0.9)) {
+                                //                                    viewModel.showItems = false
+                                viewModel.moveItems = false
+                                //                                }
+                            }
+                            //                            viewModel.moveItems = false
+                            
                         }, label: {
                             Image(systemName: "xmark")
                                 .renderingMode(.template)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.gray100)
                                 .padding(12)
-                                .background(Color.accentColor)
+                                .background(.gray800)
                                 .cornerRadius(32)
                         })
                     }
@@ -249,33 +251,6 @@ struct FirstExpandedView: View {
                 .scaleEffect(appear ? 1 : 0.5, anchor: .bottom)
                 .opacity(appear ? 1 : 0)
                 .transition(.scale(scale: 1)) // this transition is kept to remove the default opacity fade when using a matchedGeometryEffect.
-              
-
-                Button(action: {
-           
-                    withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
-                        HapticManager.instance.impact(style: .light)
-                        viewModel.selectedExpandIndex = nil
-                        viewModel.showItems = false
-                        viewModel.moveItems = false
-                        
-                    }
-                    
-                } ,label: {
-                    
-                    Rectangle()
-                    
-                        .foregroundStyle(.accent)
-                    
-                        .frame(width: 300, height: 56, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .clipShape(RoundedRectangle(cornerRadius: 40, style: .continuous))
-                        .overlay(
-                            Text("Confirm")
-                                .foregroundColor(.black) // Set the text color
-                        )
-                        .padding(48)
-                })
-                .buttonStyle(BouncyButton())
             }
             .fontDesign(.rounded)
             .background(
