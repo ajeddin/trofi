@@ -9,49 +9,19 @@ import SwiftUI
 import AppIntents
 import UIKit
 import PhotosUI
+import SwiftData
 
-
-
-
-struct ImagePicker: UIViewControllerRepresentable {
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
-
-        init(parent: ImagePicker) {
-            self.parent = parent
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let image = info[.originalImage] as? UIImage {
-                parent.selectedImage = image
-            }
-
-            parent.presentationMode.wrappedValue.dismiss()
-        }
-    }
-
-    var sourceType: UIImagePickerController.SourceType
-    @Binding var selectedImage: UIImage?
-    @Environment(\.presentationMode) var presentationMode
-
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(parent: self)
-    }
-
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        picker.sourceType = sourceType
-        return picker
-    }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-}
 
 
 
 
 struct FirstExpandedView: View {
+    @Environment(\.modelContext) private var context
+    @Query private var meals: [LoggedMeals];
+    
+    
+    
+    
     
     var namespace: Namespace.ID
     @State private var textField: String = ""
@@ -64,7 +34,7 @@ struct FirstExpandedView: View {
     @State var rating: CGFloat = 0
     var maxRating: Int = 5
     @State private var selectedImage: UIImage?
-//    @State private var selectedImageData: Data?
+    //    @State private var selectedImageData: Data?
     @State private var showActionSheet = false
     @State private var showImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
@@ -76,7 +46,8 @@ struct FirstExpandedView: View {
     
     
     var body: some View {
-        
+        ScrollView{
+
         let stars = HStack(spacing: 0) {
             ForEach(0..<maxRating, id: \.self) { _ in
                 Image(systemName: "star.square")
@@ -109,7 +80,7 @@ struct FirstExpandedView: View {
                                 HapticManager.instance.impact(style: .light)
                                 viewModel.selectedExpandIndex = nil
                             }
-                          
+                            
                             //                            viewModel.moveItems = false
                             
                         }, label: {
@@ -124,22 +95,10 @@ struct FirstExpandedView: View {
                     }
                     .padding(.top, 25)
                     .padding()
-//                    Spacer()
+                    //                    Spacer()
                     VStack(spacing: 16) {
                         
                         VStack{
-//                                                        PhotosPicker(selection: $selectedImage, matching: .images,
-//                                                                     photoLibrary: .shared()){
-//                                                            if let selectedImageData, let uiImage = UIImage(data: selectedImageData){
-//                                                                Image(uiImage: uiImage)
-//                                                                    .resizable()
-//                                                                    .scaledToFit()
-//                                                            }else{
-//                                                                Image(systemName: "photo")
-//                            
-//                                                            }
-//                                                        }
-//
                             if let image = selectedImage{
                                 Image(uiImage: image).resizable().scaledToFit()
                             }
@@ -169,6 +128,7 @@ struct FirstExpandedView: View {
                                 }
                                 .sheet(isPresented: $showImagePicker) {
                                     ImagePicker(sourceType: sourceType, selectedImage: $selectedImage)
+                                        .ignoresSafeArea()
                                 }
                             }
                             
@@ -241,7 +201,7 @@ struct FirstExpandedView: View {
                             
                             
                             
-//                            Spacer()
+                            //                            Spacer()
                             
                             
                             stars.overlay(
@@ -278,8 +238,24 @@ struct FirstExpandedView: View {
                             //                                withAnimation(.spring(response: 0.88, dampingFraction: 0.9)) {
                             //                                    viewModel.showItems = false
                             //                                }
+                            var loggedMeal = LoggedMeals(type: "we", price: 223, title: "32", descriptionMeal: "32", recipeLink: "32")
+                            if let imageUnwrapped = selectedImage{
+                                loggedMeal.imageData = imageUnwrapped.pngData()
+                                
+                            }
+                            else{
+                                print("No Image")
+                            }
+                            context.insert(loggedMeal)
+                            
+                            try? context.save()
+                            
                             viewModel.showItems = false
                             viewModel.moveItems = false
+                            
+                            
+                            
+                            
                             
                         }
                         
@@ -294,6 +270,7 @@ struct FirstExpandedView: View {
                             .overlay(
                                 Text("Confirm")
                                     .foregroundColor(.black) // Set the text color
+                                    .bold()
                             )
                             .padding(48)
                     })
@@ -323,50 +300,46 @@ struct FirstExpandedView: View {
                 }
             })
         }
-    }
+    }}
     
     
 }
-//    
-//    struct ImagePicker: UIViewControllerRepresentable {
-//        var sourceType: UIImagePickerController.SourceType
-//
-//        func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-//            let picker = UIImagePickerController()
-//            picker.sourceType = sourceType
-//            picker.delegate = context.coordinator
-//            return picker
-//        }
-//
-//        func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
-//
-//        func makeCoordinator() -> Coordinator {
-//            Coordinator(self)
-//        }
-//
-//        class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-//            let parent: ImagePicker
-//
-//            init(_ parent: ImagePicker) {
-//                self.parent = parent
-//            }
-//
-//            func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-//                // Handle the selected image
-//                picker.dismiss(animated: true)
-//            }
-//
-//            func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//                picker.dismiss(animated: true)
-//            }
-//        }
-//    }
-//    
-//    
-//    
-    
-    
-    
+struct ImagePicker: UIViewControllerRepresentable {
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        let parent: ImagePicker
+
+        init(parent: ImagePicker) {
+            self.parent = parent
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let image = info[.originalImage] as? UIImage {
+                parent.selectedImage = image
+            }
+
+            parent.presentationMode.wrappedValue.dismiss()
+        }
+    }
+
+    var sourceType: UIImagePickerController.SourceType
+    @Binding var selectedImage: UIImage?
+    @Environment(\.presentationMode) var presentationMode
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
+    }
+
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        picker.sourceType = sourceType
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+}
+
+
 
 struct FirstExpandedView_Preview: PreviewProvider {
     @Namespace static var namespace

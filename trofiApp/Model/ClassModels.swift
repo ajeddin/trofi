@@ -7,29 +7,27 @@
 
 import Foundation
 import SwiftData
-import SwiftUI
 
 @Model
 class LoggedMeals : Identifiable{
-    var id : String?
+    var id  = UUID().uuidString
     @Attribute(.externalStorage)
     var imageData: Data?;
     var type: String = ""
+    var price: Float = 0.0
     var title:String = "";
     var descriptionMeal : String = ""
-    
     var recipeLink : String = ""
 
-    init(id: String? = nil, imageData: Data? = nil, type: String, title: String, descriptionMeal: String, recipeLink: String) {
+    init( imageData: Data? = nil, type: String, price: Float, title: String, descriptionMeal: String, recipeLink: String) {
         self.id = id
         self.imageData = imageData
         self.type = type
+        self.price = price
         self.title = title
         self.descriptionMeal = descriptionMeal
         self.recipeLink = recipeLink
     }
-    
-
 }
 
 
