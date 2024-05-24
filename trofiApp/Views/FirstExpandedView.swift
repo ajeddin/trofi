@@ -177,7 +177,7 @@ struct FirstExpandedView: View {
                             
                             
                             TextField(
-                                "Recipe:",
+                                "Recipe/Link:",
                                 text: $recipe
                             )
                             .overlay(
