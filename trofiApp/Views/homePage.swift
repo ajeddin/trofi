@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct homePage: View {
     @State var selectedDate: Date = Date()
-
+    @Environment(\.modelContext) private var context
+    @Query private var meals: [LoggedMeals];
     @EnvironmentObject var viewModel: HomeViewModel
     @State private var show: Bool = false
     @State private var appear: Bool = true
@@ -69,48 +70,10 @@ struct HomeView_Preview: PreviewProvider {
     }
 }
 
-//struct ExpandView: View {
-//    let expand: ExpandSection
-//
-//    var body: some View {
-//        HStack(alignment: .top, spacing: 16) {
-//            Image(systemName: expand.imageName)
-//                .font(.body)
-//                .fontWeight(.semibold)
-//                .padding(8)
-//                .foregroundStyle(Color("AccentColor"))
-//                .background(expand.backgroundColor.gradient)
-//                .clipShape(Circle())
-//
-//            VStack(alignment: .leading, spacing: 4) {
-//                Text(expand.title)
-//                    .font(.title3)
-//                    .fontWeight(.bold)
-//                    .foregroundStyle(Color("AccentColor"))
-//
-//                Text(expand.description)
-//                    .font(.callout)
-//                    .foregroundStyle(Color("AccentColor"))
-//            }
-//        }
-//        .fontDesign(.rounded)
-//        .padding(16)
-//        .frame(width: 336, alignment: .leading)
-//        .background(Color("AccentColor").opacity(0.6))
-//        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-//        .overlay {
-//            RoundedRectangle(cornerRadius: 16, style: .continuous)
-//                .stroke(Color("AccentColor"), lineWidth: 0.7)
-//        }
-//    }
-//}
-
-
 extension homePage {
     var plusButton: some View {
         Button {
             HapticManager.instance.impact(style: .light)
-            print(viewModel.selectedExpandIndex)
             withAnimation(.spring(response: 0.25, dampingFraction: 0.85, blendDuration: 1)) {
                 viewModel.showItems = true
                 viewModel.selectedExpandIndex=0;
@@ -198,10 +161,38 @@ extension homePage {
                     
                 }
                 .padding(.top, 24)
+//                ScrollView {
+
+                    List(meals) { meal in
+                        Text("\(meal.title)")
+
+
+                            .bold()
+                    }
+                
+                
                 ScrollView {
-                    
-                  
+                    ForEach(meals, id: \.id) { meal in
+                        if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                        } else {
+                            // Provide a placeholder image or handle the case where imageData is nil or invalid
+                            Image(systemName: "logoTrofi")
+                                .resizable()
+                                .scaledToFit()
+                        }
+                    }
                 }
+
+                    
+//                    var uiImage: UIImage = UIImage(data: meals[1].imageData!)!
+//                    Image(uiImage: uiImage)
+//                        .resizable()
+//                        .scaledToFit()
+
+//                }
             }
 //            .frame(maxWidth: .infinity)
 
@@ -219,5 +210,64 @@ extension homePage {
 
     }
 }
+
+
+
+
+func dataToImage(_ data: Data?) -> UIImage{
+    var uiImage: UIImage = UIImage(data: data!)!
+    return uiImage
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//struct ExpandView: View {
+//    let expand: ExpandSection
+//
+//    var body: some View {
+//        HStack(alignment: .top, spacing: 16) {
+//            Image(systemName: expand.imageName)
+//                .font(.body)
+//                .fontWeight(.semibold)
+//                .padding(8)
+//                .foregroundStyle(Color("AccentColor"))
+//                .background(expand.backgroundColor.gradient)
+//                .clipShape(Circle())
+//
+//            VStack(alignment: .leading, spacing: 4) {
+//                Text(expand.title)
+//                    .font(.title3)
+//                    .fontWeight(.bold)
+//                    .foregroundStyle(Color("AccentColor"))
+//
+//                Text(expand.description)
+//                    .font(.callout)
+//                    .foregroundStyle(Color("AccentColor"))
+//            }
+//        }
+//        .fontDesign(.rounded)
+//        .padding(16)
+//        .frame(width: 336, alignment: .leading)
+//        .background(Color("AccentColor").opacity(0.6))
+//        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+//        .overlay {
+//            RoundedRectangle(cornerRadius: 16, style: .continuous)
+//                .stroke(Color("AccentColor"), lineWidth: 0.7)
+//        }
+//    }
+//}
 
 
