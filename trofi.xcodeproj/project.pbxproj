@@ -33,6 +33,8 @@
 		218630212BFCE19700599708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218630202BFCE19700599708 /* Assets.xcassets */; };
 		218630252BFCE19700599708 /* LogDIshWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 218630112BFCE19600599708 /* LogDIshWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2186302C2BFE302600599708 /* ClassModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186302B2BFE302600599708 /* ClassModels.swift */; };
+		C1D7CC212C00BD8E00206BD2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D7CC202C00BD8E00206BD2 /* NetworkManager.swift */; };
+		C1D7CC232C00BE5F00206BD2 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D7CC222C00BE5F00206BD2 /* RecipeModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		2186302A2BFCE3A400599708 /* dala-floda-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dala-floda-medium.ttf"; sourceTree = "<group>"; };
 		2186302B2BFE302600599708 /* ClassModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassModels.swift; sourceTree = "<group>"; };
 		2186302D2BFE307100599708 /* trofi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = trofi.entitlements; sourceTree = "<group>"; };
+		C1D7CC202C00BD8E00206BD2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C1D7CC222C00BE5F00206BD2 /* RecipeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +190,7 @@
 				213987632BFB978A0050214E /* BouncyButton.swift */,
 				213987642BFB978A0050214E /* Colors.swift */,
 				213987652BFB978A0050214E /* HapticsManager.swift */,
+				C1D7CC202C00BD8E00206BD2 /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 			children = (
 				2139876A2BFB97B10050214E /* ButtonModel.swift */,
 				2186302B2BFE302600599708 /* ClassModels.swift */,
+				C1D7CC222C00BE5F00206BD2 /* RecipeModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,8 +332,10 @@
 			files = (
 				213987742BFB9CC20050214E /* viewController.swift in Sources */,
 				2139874E2BFB919F0050214E /* recipeView.swift in Sources */,
+				C1D7CC232C00BE5F00206BD2 /* RecipeModels.swift in Sources */,
 				213987662BFB978A0050214E /* BouncyButton.swift in Sources */,
 				213987392BFB7B110050214E /* splashScreen.swift in Sources */,
+				C1D7CC212C00BD8E00206BD2 /* NetworkManager.swift in Sources */,
 				213987712BFB98350050214E /* FirstExpandedView.swift in Sources */,
 				2139874A2BFB91700050214E /* insightsView.swift in Sources */,
 				2139872C2BFB767C0050214E /* ContentView.swift in Sources */,
@@ -493,7 +501,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"trofiApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trofiApp/Info.plist;
@@ -507,7 +515,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi;
+				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.trofi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -525,7 +533,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"trofiApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trofiApp/Info.plist;
@@ -539,7 +547,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi;
+				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.trofi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -554,7 +562,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LogDIshWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LogDIshWidget;
@@ -565,7 +573,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.LogDIshWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.trofi.LogDIshWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -581,7 +589,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LogDIshWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LogDIshWidget;
@@ -592,7 +600,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.LogDIshWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.trofi.LogDIshWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
