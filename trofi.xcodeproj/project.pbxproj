@@ -37,16 +37,6 @@
 		C1D7CC232C00BE5F00206BD2 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D7CC222C00BE5F00206BD2 /* RecipeModels.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		218630232BFCE19700599708 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2139871E2BFB767C0050214E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 218630102BFCE19600599708;
-			remoteInfo = LogDIshWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		218630262BFCE19700599708 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -243,7 +233,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				218630242BFCE19700599708 /* PBXTargetDependency */,
 			);
 			name = trofi;
 			productName = trofiApp;
@@ -362,14 +351,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		218630242BFCE19700599708 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 218630102BFCE19600599708 /* LogDIshWidgetExtension */;
-			targetProxy = 218630232BFCE19700599708 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		213987322BFB767D0050214E /* Debug */ = {
@@ -505,6 +486,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trofiApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Gabe pics";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -514,8 +496,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.trofi;
+
+				MARKETING_VERSION = 1.02;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -537,6 +520,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trofiApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Gabe pics";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -546,8 +530,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.trofi;
+
+				MARKETING_VERSION = 1.02;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

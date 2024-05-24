@@ -15,7 +15,7 @@ struct trofiAppApp: App {
 //            ContentView()
             viewController()
 
-        }.modelContainer(for: [LoggedMeals.self])
+        }.modelContainer(for: LoggedMeals.self)
      
     }
 }
