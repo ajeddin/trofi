@@ -1,84 +1,143 @@
 //
 //  recipeView.swift
-//  trofiApp
+//  trofi
 //
-//  Created by Abdulaziz Jamaleddin on 5/20/24.
+//  Created by Abdulaziz Jamaleddin on 5/29/24.
 //
+
 
 import SwiftUI
-
+import SwiftData
 struct recipeView: View {
-    @ObservedObject var networkManager = NetworkManager()
-        @State private var searchQuery = ""
 
-        var body: some View {
-            NavigationView {
-                VStack {
-                    TextField("Search for recipes", text: $searchQuery, onCommit: {
-                        networkManager.fetchRecipes(query: searchQuery)
-                    })
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+    @EnvironmentObject var viewModelTwo: HomeViewModel
+    @State private var show: Bool = false
+    @State private var appear: Bool = true
+    @State private var selectedExpandIndex: Int? = nil
+    var namespace: Namespace.ID
+    
 
-                    List(networkManager.recipes) { recipe in
-                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                            HStack {
-                                AsyncImage(url: URL(string: recipe.image)) { image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .frame(width: 50, height: 50)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
+    var body: some View {
+        
+         ZStack(alignment: .bottomTrailing) {
+//             ContentView()
+             lowFidelityTwo
+             
 
-                                VStack(alignment: .leading) {
-                                    Text(recipe.label)
-                                        .font(.headline)
-                                    Text(recipe.source)
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
-                            }
-                        }
+             if viewModelTwo.selectedExpandIndex != nil {
+                     if let index = viewModelTwo.selectedExpandIndex {
+                         switch index {
+                         case 0:
+                             SecondExpandedView(namespace: namespace)
+//                         case 1:
+//                             SecondExpandedView(namespace: namespace)
+//
+                         default:
+                             recipeView(namespace: namespace)
+                         }
+                     }
+                 } else {
+                     ZStack(content: {
+                         combinedViewsTwo
+                             .padding(20)
+                             //.offset(y: viewModelTwo.showItems ? 0 : -80)
+                     })
+                     .transition(.scale(scale: 1))
+                 }
+             
+         }
+    }
+}
+
+
+
+
+extension recipeView {
+    var plusButtonTwo: some View {
+        Button {
+            HapticManager.instance.impact(style: .light)
+            withAnimation(.spring(response: 0.45, dampingFraction: 1.2, blendDuration: 1)) {
+                viewModelTwo.selectedExpandIndex=0;
+                viewModelTwo.showItems = true
+                
+            }
+            
+        } label: {
+            Image(systemName: "plus")
+                .font(.title)
+                .fontWeight(.semibold)
+                .foregroundStyle(.gray0)
+                .padding(16)
+        }
+
+    }
+    
+    var combinedViewsTwo: some View {
+        ZStack {
+            if !viewModelTwo.showItems {
+                plusButtonTwo
+            }
+           
+        }
+        .padding(viewModelTwo.showItems ? 8 : 0)
+        .background(
+            RoundedRectangle(cornerRadius: viewModelTwo.showItems ? 24 : 32, style: .continuous)
+                .fill(Color("AccentColor"))
+                .matchedGeometryEffect(id: "background", in: namespace)
+        )
+        .mask({
+            RoundedRectangle(cornerRadius: viewModelTwo.showItems ? 24 : 32, style: .continuous)
+                .matchedGeometryEffect(id: "mask", in: namespace)
+        })
+    }
+    
+    var lowFidelityTwo: some View {
+        
+        ZStack(alignment: .bottom, content: {
+//        ZStack{
+            VStack{
+                
+                VStack(alignment: .center) {
+                    HStack{
+                        Text("trofi")
+                            .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
+                            .kerning(4)
+                        
+                        Spacer()
                     }
+                    //
+                    
+                    Divider().frame(height: 1)
+                  
+                    Divider()
+                    
+                    
                 }
-                .navigationTitle("Recipe Search")
-            }
-        }
-    }
-
-    struct RecipeDetailView: View {
-        let recipe: Recipe
-
-        var body: some View {
-            VStack {
-                AsyncImage(url: URL(string: recipe.image)) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
+                .padding(.top, 24)
+//
+                
+                ScrollView {
+//
                 }
-                .frame(height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
 
-                Text(recipe.label)
-                    .font(.largeTitle)
-                    .padding()
-
-                Text("Source: \(recipe.source)")
-                    .font(.subheadline)
-                    .padding()
-
-                Link("View Recipe", destination: URL(string: recipe.url)!)
-                    .font(.title2)
-                    .padding()
             }
-            .navigationTitle("Recipe Details")
-            .navigationBarTitleDisplayMode(.inline)
+            .frame(maxWidth: .infinity)
+
+            .scrollIndicators(.hidden)
+//            .scaleEffect(viewModelTwo.moveItems ? 0.8 : 1, anchor: .bottom)
         }
+        )
+        .padding(.horizontal, 20)
+        .background(.gray0)
+
     }
+}
 
-
-
-#Preview {
-    recipeView()
+struct recipeView_Preview: PreviewProvider {
+    @Namespace static var namespace
+    
+    static var previews: some View {
+        recipeView(namespace: namespace)
+            .environmentObject(HomeViewModel())
+    }
 }

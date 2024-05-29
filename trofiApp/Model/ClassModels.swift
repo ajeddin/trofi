@@ -10,8 +10,7 @@ import SwiftData
 
 @Model
 class LoggedMeals : Identifiable{
-    var id  = UUID().uuidString
-    @Attribute(.externalStorage)
+    var id : String =  ""
     var imageData: Data?;
     var type: String = ""
     var price: Float = 0.0
@@ -20,7 +19,7 @@ class LoggedMeals : Identifiable{
     var recipeLink : String = ""
 
     init( imageData: Data? = nil, type: String, price: Float, title: String, descriptionMeal: String, recipeLink: String) {
-        self.id = id
+        self.id = UUID().uuidString
         self.imageData = imageData
         self.type = type
         self.price = price

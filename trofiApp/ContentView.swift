@@ -9,7 +9,10 @@ import SwiftUI
 import SwiftData
 struct ContentView: View {
     @StateObject var viewModel = HomeViewModel()
+    @StateObject var viewModelTwo = HomeViewModel()
+
     @Namespace var namespace
+    @Namespace var namespace3
 
     var body: some View {
         if (viewModel.showItems == true){
@@ -28,13 +31,16 @@ struct ContentView: View {
                     .tabItem {
                         Label("Insights", systemImage: "chart.xyaxis.line")}
                     .toolbar(.hidden, for: .tabBar)
-                recipeView()
+               recipeView(namespace: namespace)
+                    .environmentObject(viewModelTwo)
+
                     .tabItem {
                         Label("Recipes", systemImage: "note.text")}
                     .toolbar(.hidden, for: .tabBar)
                 
             }
-        }else{
+        }
+            else{
             TabView {
                 
                 homePage(namespace: namespace, expand: ExpandSection(title: "Send", description: "Send tokens or collectibles to any address or ENS username.", imageName: "paperplane.fill", backgroundColor: .blue))
@@ -47,7 +53,9 @@ struct ContentView: View {
                 insightsView()
                     .tabItem {
                         Label("Insights", systemImage: "chart.xyaxis.line")}
-                recipeView()
+                recipeView(namespace: namespace)
+                    .environmentObject(viewModelTwo)
+
                     .tabItem {
                         Label("Recipes", systemImage: "note.text")}
                 
