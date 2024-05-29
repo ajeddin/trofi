@@ -67,9 +67,10 @@ struct FirstExpandedView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack {
                         Text("Log Meal")
-                            .font(.title)
+                            .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
                             .fontWeight(.bold)
                             .foregroundStyle(.gray900)
+
                         
                         
                         
