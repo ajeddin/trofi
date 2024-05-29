@@ -46,7 +46,6 @@ struct FirstExpandedView: View {
     
     
     var body: some View {
-        ScrollView{
 
         let stars = HStack(spacing: 0) {
             ForEach(0..<maxRating, id: \.self) { _ in
@@ -65,6 +64,7 @@ struct FirstExpandedView: View {
             ZStack(alignment: .bottom) {
                 
                 VStack(alignment: .leading, spacing: 16) {
+                    
                     HStack {
                         Text("Log Meal")
                             .font(.title)
@@ -75,7 +75,7 @@ struct FirstExpandedView: View {
                         
                         Spacer()
                         Button(action: {
-                            withAnimation(.spring(response: 0.25, dampingFraction: 1.25)) {
+                            withAnimation(.spring(response: 0.45, dampingFraction: 1.2, blendDuration: 1)) {
                                 viewModel.showItems = false
                                 HapticManager.instance.impact(style: .light)
                                 viewModel.selectedExpandIndex = nil
@@ -93,9 +93,8 @@ struct FirstExpandedView: View {
                                 .cornerRadius(32)
                         })
                     }
-                    .padding(.top, 25)
+                    .padding(.top,60)
                     .padding()
-                    //                    Spacer()
                     VStack(spacing: 16) {
                         
                         VStack{
@@ -111,7 +110,7 @@ struct FirstExpandedView: View {
                                         Rectangle()
                                             .fill(Color.accentColor.opacity(0.1))
                                             .cornerRadius(14)
-                                        Image(systemName: "photo.badge.plus").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                        Image(systemName: "photo.badge.plus").font(.title)
                                     }}
                                 .actionSheet(isPresented: $showActionSheet) {
                                     ActionSheet(title: Text("Select an option"), buttons: [
@@ -148,7 +147,7 @@ struct FirstExpandedView: View {
                             //                                    .stroke(Color.gray, lineWidth: 4)
                             //                            )
                             .colorMultiply(Color.accentColor)
-                            .frame(width: 350)
+//                            .frame(width: 350)
                             .padding(.bottom)
                             
                             TextField(
@@ -184,8 +183,7 @@ struct FirstExpandedView: View {
                                 RoundedRectangle(cornerRadius: 14)
                                     .stroke(Color.accentColor, lineWidth: 2))
                             .textFieldStyle(.roundedBorder)
-                            .padding([.leading, .trailing, .bottom]) // Adjust the value as needed
-                            
+                            .padding([.leading, .trailing, .bottom])
                             
                             
                             TextField(
@@ -224,20 +222,9 @@ struct FirstExpandedView: View {
                     
                     
                     Button(action: {
-                        //                    withAnimation(.spring(response: 0.25, dampingFraction: 1.2)) {
-                        ////                        viewModel.showItems = true
-                        //                        HapticManager.instance.impact(style: .light)
-                        //                        viewModel.selectedExpandIndex = nil
-                        //                    }
-                        
                         withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
                             HapticManager.instance.impact(style: .light)
                             viewModel.selectedExpandIndex = nil
-                            //
-                            
-                            //                                withAnimation(.spring(response: 0.88, dampingFraction: 0.9)) {
-                            //                                    viewModel.showItems = false
-                            //                                }
                             var loggedMeal = LoggedMeals(type: "we", price: 223, title: "32", descriptionMeal: "32", recipeLink: "32")
                             if let imageUnwrapped = selectedImage{
                                 loggedMeal.imageData = imageUnwrapped.pngData()
@@ -252,11 +239,6 @@ struct FirstExpandedView: View {
                             
                             viewModel.showItems = false
                             viewModel.moveItems = false
-                            
-                            
-                            
-                            
-                            
                         }
                         
                     } ,label: {
@@ -299,7 +281,7 @@ struct FirstExpandedView: View {
                     appear = true
                 }
             })
-        }
+        
     }}
     
     

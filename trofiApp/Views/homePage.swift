@@ -40,9 +40,7 @@ struct homePage: View {
                          switch index {
                          case 0:
                              FirstExpandedView(namespace: namespace)
-//                         case 1:
-//                             SecondExpandedView(namespace: namespace)
-//    
+                  
                          default:
                              homePage(namespace: namespace, expand: ExpandSection(title: "jkjkj", description: "", imageName: "", backgroundColor: .clear))
                          }
@@ -74,7 +72,7 @@ extension homePage {
     var plusButton: some View {
         Button {
             HapticManager.instance.impact(style: .light)
-            withAnimation(.spring(response: 0.25, dampingFraction: 0.85, blendDuration: 1)) {
+            withAnimation(.spring(response: 0.45, dampingFraction: 1.2, blendDuration: 1)) {
                 viewModel.showItems = true
                 viewModel.selectedExpandIndex=0;
             }
@@ -161,40 +159,25 @@ extension homePage {
                     
                 }
                 .padding(.top, 24)
-//                ScrollView {
-
-                    List(meals) { meal in
-                        Text("\(meal.title)")
-
-
-                            .bold()
-                    }
-                
+//
                 
                 ScrollView {
-                    ForEach(meals, id: \.id) { meal in
-                        if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
-                        } else {
-                            // Provide a placeholder image or handle the case where imageData is nil or invalid
-                            Image(systemName: "logoTrofi")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                    }
+//                    ForEach(meals, id: \.id) { meal in
+//                        if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
+//                            Image(uiImage: uiImage)
+//                                .resizable()
+//                                .scaledToFit()
+//                        } else {
+//                            // Provide a placeholder image or handle the case where imageData is nil or invalid
+//                            Image(systemName: "logoTrofi")
+//                                .resizable()
+//                                .scaledToFit()
+//                        }
+//                    }
                 }
 
-                    
-//                    var uiImage: UIImage = UIImage(data: meals[1].imageData!)!
-//                    Image(uiImage: uiImage)
-//                        .resizable()
-//                        .scaledToFit()
-
-//                }
             }
-//            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity)
 
             .scrollIndicators(.hidden)
 //            .scaleEffect(viewModel.moveItems ? 0.8 : 1, anchor: .bottom)
@@ -202,11 +185,6 @@ extension homePage {
         )
         .padding(.horizontal, 20)
         .background(.gray0)
-//        .onTapGesture {
-//            withAnimation(.spring(response: 0.55, dampingFraction: 0.85, blendDuration: 1)) {
-//                viewModel.showItems = false
-//            }
-//        }
 
     }
 }
@@ -218,16 +196,6 @@ func dataToImage(_ data: Data?) -> UIImage{
     var uiImage: UIImage = UIImage(data: data!)!
     return uiImage
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
