@@ -21,13 +21,12 @@ struct FirstExpandedView: View {
     
     
     
-    
-    
+    @FocusState private var isUsernameFocused: Bool
+
     var namespace: Namespace.ID
     @State private var textField: String = ""
     @State private var appear: Bool = false
     @EnvironmentObject var viewModel: HomeViewModel
-    @ObservedObject var sharedInsightsModel: InsightsModel
     @State var selection = 0
     @State private var title: String = ""
     @State private var recipe: String = ""
@@ -101,7 +100,7 @@ struct FirstExpandedView: View {
                         
                         VStack{
                             if let image = selectedImage{
-                                Image(uiImage: image).resizable().scaledToFit()
+                                Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: 200,maxHeight: 200)
                             }
                             else{
                                 Button {
@@ -227,23 +226,26 @@ struct FirstExpandedView: View {
                         withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
                             HapticManager.instance.impact(style: .light)
                             viewModel.selectedExpandIndex = nil
-                            var loggedMeal = LoggedMeals(type: "we", price: 223, title: "32", descriptionMeal: "32", recipeLink: "32")
-                            if let imageUnwrapped = selectedImage{
-                                loggedMeal.imageData = imageUnwrapped.pngData()
+                            var loggedMeal = LoggedMeals(type: "h", price: 223, title: "\(title)", descriptionMeal: "\(notes)", recipeLink: "\(recipe)",rating: Float(rating))
+                            if (selection == 1){
+                                loggedMeal.type = "r"
+                            }
+                                if let imageUnwrapped = selectedImage{
+                                    loggedMeal.imageData = imageUnwrapped.pngData()
+                                    
+                                }
+                                else{
+                                    print("No Image")
+                                }
+                                context.insert(loggedMeal)
                                 
+                                try? context.save()
+                                
+                                viewModel.showItems = false
+                                viewModel.moveItems = false
                             }
-                            else{
-                                print("No Image")
-                            }
-                            context.insert(loggedMeal)
                             
-                            try? context.save()
-                            sharedInsightsModel.totalMealsLogged += 1 // Increment the totalMealsLogged
-                            viewModel.showItems = false
-                            viewModel.moveItems = false
-                        }
-                        
-                    } ,label: {
+                        } ,label: {
                         
                         Rectangle()
                         
@@ -329,7 +331,7 @@ struct FirstExpandedView_Preview: PreviewProvider {
     @Namespace static var namespace
     
     static var previews: some View {
-        FirstExpandedView(namespace: namespace, sharedInsightsModel: InsightsModel())
+        FirstExpandedView(namespace: namespace)
             .environmentObject(HomeViewModel())
     }
 }
