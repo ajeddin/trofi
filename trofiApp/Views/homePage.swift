@@ -162,18 +162,18 @@ extension homePage {
 //
                 
                 ScrollView {
-//                    ForEach(meals, id: \.id) { meal in
-//                        if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
-//                            Image(uiImage: uiImage)
-//                                .resizable()
-//                                .scaledToFit()
-//                        } else {
-//                            // Provide a placeholder image or handle the case where imageData is nil or invalid
-//                            Image(systemName: "logoTrofi")
-//                                .resizable()
-//                                .scaledToFit()
-//                        }
-//                    }
+                    ForEach(meals, id: \.id) { meal in
+                        if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                        } else {
+                            // Provide a placeholder image or handle the case where imageData is nil or invalid
+                            Image(systemName: "logoTrofi")
+                                .resizable()
+                                .scaledToFit()
+                        }
+                    }
                 }
 
             }
