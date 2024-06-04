@@ -98,35 +98,7 @@ struct SecondExpandedView: View {
                             }
                             .padding(.horizontal, 15)
                             .padding(.top, 5)
-                            
-                            
-                            
-                            Button(action: {
-                                withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
-                                    HapticManager.instance.impact(style: .light)
-                                    viewModel.selectedExpandIndex = nil
-                                    
-                                    
-                                    viewModel.showItems = false
-                                    viewModel.moveItems = false
-                                }
-                                
-                            } ,label: {
-                                
-                                Rectangle()
-                                
-                                    .foregroundStyle(.accent)
-                                
-                                    .frame(width: 300, height: 56, alignment: .center)
-                                    .clipShape(RoundedRectangle(cornerRadius: 40, style: .continuous))
-                                    .overlay(
-                                        Text("Confirm")
-                                            .foregroundColor(.black) // Set the text color
-                                            .bold()
-                                    )
-                                    .padding(48)
-                            })
-                            .buttonStyle(BouncyButton())
+                     
                             
                         }
                         
