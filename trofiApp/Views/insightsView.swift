@@ -10,6 +10,7 @@ import Charts
 
 
 
+
 struct RatingData: Identifiable {
     let id = UUID()
     let date: Date
@@ -26,13 +27,8 @@ struct CookingFrequencyData: Identifiable {
 
 
 struct insightsView: View {
-    @State private var totalMealsLogged: Int = 0
-    @State private var totalRecipesAdded: Int = 0
-    @State private var mealsLoggedStreak: Int = 0
-    @State private var highestRatedDish: String = ""
-    @State private var lowestRatedDish: String = ""
-    @State private var averageRatingData: [RatingData] = []
-    @State private var cookingFrequencyData: [CookingFrequencyData] = []
+    @StateObject var sharedInsightsModel = InsightsModel()
+
     
     var body: some View {
         ScrollView {
@@ -41,14 +37,13 @@ struct insightsView: View {
                     .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
                     .padding(.bottom)
                 
-                InsightCard(title: "Total Number of Meals Logged", value: "\(totalMealsLogged)")
-                InsightCard(title: "Total Number of Recipes Added", value: "\(totalRecipesAdded)")
-                InsightCard(title: "Meals Logged Streak", value: "\(mealsLoggedStreak) days")
+                InsightCard(title: "Total Number of Meals Logged", value: "\(sharedInsightsModel.totalMealsLogged)")
+                InsightCard(title: "Total Number of Recipes Added", value: "\(sharedInsightsModel.totalRecipesAdded)")
                 
                 VStack(alignment: .leading) {
                     Text("Average Rating Over Time")
                         .font(.headline)
-                    LineChartView(data: averageRatingData)
+                    LineChartView(data: sharedInsightsModel.averageRatingData)
                         .frame(height: 200)
                 }
                 .padding()
@@ -61,7 +56,7 @@ struct insightsView: View {
                 VStack(alignment: .leading) {
                     Text("Cooking Frequency")
                         .font(.headline)
-                    BarChartView(data: cookingFrequencyData)
+                    BarChartView(data: sharedInsightsModel.cookingFrequencyData)
                         .frame(height: 200)
                 }
                 .padding()
@@ -69,8 +64,8 @@ struct insightsView: View {
                 .cornerRadius(10)
                 .shadow(radius: 5)
                 
-                InsightCard(title: "Highest Rated Dish", value: highestRatedDish)
-                InsightCard(title: "Lowest Rated Dish", value: lowestRatedDish)
+                InsightCard(title: "Highest Rated Dish", value: sharedInsightsModel.highestRatedDish)
+                InsightCard(title: "Lowest Rated Dish", value: sharedInsightsModel.lowestRatedDish)
             }
             .padding()
         }
@@ -93,7 +88,7 @@ struct insightsView: View {
                    RatingData(date: Date(timeIntervalSinceNow: -86400 * 2), rating: 4.2),
                    RatingData(date: Date(timeIntervalSinceNow: -86400 * 1), rating: 4.7)
                ]
-               averageRatingData = exampleData
+        sharedInsightsModel.averageRatingData = exampleData
         
         let exampleCookingFrequencyData = [
                    CookingFrequencyData(period: "Monday", count: 2),
@@ -104,7 +99,7 @@ struct insightsView: View {
                    CookingFrequencyData(period: "Saturday", count: 3),
                    CookingFrequencyData(period: "Sunday", count: 2)
                ]
-               cookingFrequencyData = exampleCookingFrequencyData
+        sharedInsightsModel.cookingFrequencyData = exampleCookingFrequencyData
            }
 }
 
