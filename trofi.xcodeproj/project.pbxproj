@@ -37,6 +37,8 @@
 		C1D7CC212C00BD8E00206BD2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D7CC202C00BD8E00206BD2 /* NetworkManager.swift */; };
 		C1D7CC232C00BE5F00206BD2 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D7CC222C00BE5F00206BD2 /* RecipeModels.swift */; };
 		C1D7CC262C08CFF100206BD2 /* InsightsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D7CC252C08CFF100206BD2 /* InsightsModel.swift */; };
+		C1ECAFEC2C0F518700693DCF /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ECAFEB2C0F518700693DCF /* MealDetailView.swift */; };
+		C1ECAFEE2C0F558C00693DCF /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ECAFED2C0F558C00693DCF /* MealView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +91,8 @@
 		C1D7CC202C00BD8E00206BD2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C1D7CC222C00BE5F00206BD2 /* RecipeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModels.swift; sourceTree = "<group>"; };
 		C1D7CC252C08CFF100206BD2 /* InsightsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsModel.swift; sourceTree = "<group>"; };
+		C1ECAFEB2C0F518700693DCF /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
+		C1ECAFED2C0F558C00693DCF /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,11 +163,13 @@
 			isa = PBXGroup;
 			children = (
 				213987472BFB91630050214E /* homePage.swift */,
+				C1ECAFED2C0F558C00693DCF /* MealView.swift */,
+				C1ECAFEB2C0F518700693DCF /* MealDetailView.swift */,
 				213987382BFB7B110050214E /* splashScreen.swift */,
 				213987492BFB91700050214E /* insightsView.swift */,
-				2139874D2BFB919F0050214E /* recipeView.swift */,
 				2139874B2BFB91910050214E /* galleryView.swift */,
 				2139876E2BFB98350050214E /* FirstExpandedView.swift */,
+				2139874D2BFB919F0050214E /* recipeView.swift */,
 				2139876C2BFB98350050214E /* SecondExpandedView.swift */,
 				211D62112C0753B8003DBE8F /* recipeViewTwo.swift */,
 			);
@@ -333,6 +339,7 @@
 				213987392BFB7B110050214E /* splashScreen.swift in Sources */,
 				C1D7CC212C00BD8E00206BD2 /* NetworkManager.swift in Sources */,
 				213987712BFB98350050214E /* FirstExpandedView.swift in Sources */,
+				C1ECAFEC2C0F518700693DCF /* MealDetailView.swift in Sources */,
 				2139874A2BFB91700050214E /* insightsView.swift in Sources */,
 				2139872C2BFB767C0050214E /* ContentView.swift in Sources */,
 				2186302C2BFE302600599708 /* ClassModels.swift in Sources */,
@@ -341,6 +348,7 @@
 				C1D7CC262C08CFF100206BD2 /* InsightsModel.swift in Sources */,
 				213987722BFB98CF0050214E /* Colors.swift in Sources */,
 				213987482BFB91630050214E /* homePage.swift in Sources */,
+				C1ECAFEE2C0F558C00693DCF /* MealView.swift in Sources */,
 				2139876B2BFB97B10050214E /* ButtonModel.swift in Sources */,
 				213987682BFB978A0050214E /* HapticsManager.swift in Sources */,
 				2139874C2BFB91910050214E /* galleryView.swift in Sources */,
@@ -490,7 +498,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"trofiApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trofiApp/Info.plist;
@@ -505,7 +513,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.02;
-				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi;
+				PRODUCT_BUNDLE_IDENTIFIER = me.MoeM.trofi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -523,7 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"trofiApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trofiApp/Info.plist;
@@ -538,7 +546,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.02;
-				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi;
+				PRODUCT_BUNDLE_IDENTIFIER = me.MoeM.trofi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -553,7 +561,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LogDIshWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LogDIshWidget;
@@ -564,7 +572,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.LogDIshWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = me.MoeM.trofi.LogDIshWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -580,7 +588,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 42NWXG687M;
+				DEVELOPMENT_TEAM = M8ZG8KDA6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LogDIshWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LogDIshWidget;
@@ -591,7 +599,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.LogDIshWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = me.MoeM.trofi.LogDIshWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

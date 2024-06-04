@@ -11,10 +11,10 @@ import SwiftData
 @Model
 class LoggedMeals : Identifiable{
     var id : String =  ""
-    var imageData: Data?;
+    var imageData: Data?
     var type: String = ""
     var price: Float = 0.0
-    var title:String = "";
+    var title:String = ""
     var descriptionMeal : String = ""
     var recipeLink : String = ""
     var rating : Float = 0
@@ -34,8 +34,8 @@ class LoggedMeals : Identifiable{
 @Model
 class RecipeData : Identifiable{
     var id : String =  ""
-    var imageData: Data?;
-    var title:String = "";
+    var imageData: Data?
+    var title:String = ""
     var descriptionMeal : String = ""
     var recipeLink : String = ""
 
