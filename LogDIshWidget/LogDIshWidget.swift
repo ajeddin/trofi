@@ -47,8 +47,11 @@ struct LogDishWidgetEntryView : View {
             
             VStack {
                 Text("trofi")
-                    .font(.title.weight(.bold))
+//                    .font(.title.weight(.bold))
                     .foregroundColor(Color.white)
+                    .font(.custom("DalaFloda-Medium", size: 30, relativeTo: .title))
+
+//                    .font(.custom("DalaFloda-Medium", size: 36))
                 
                 
                 
@@ -68,6 +71,8 @@ struct LogDishWidgetEntryView : View {
                 
                 Text("log a dish")
                     .foregroundColor(Color.white)
+                    .font(.custom("DalaFloda-Medium", size: 18, relativeTo: .title2))
+
                 
             }
             

@@ -39,7 +39,7 @@ struct homePage: View {
                      if let index = viewModel.selectedExpandIndex {
                          switch index {
                          case 0:
-                             FirstExpandedView(namespace: namespace)
+                             FirstExpandedView(namespace: namespace, sharedInsightsModel: InsightsModel())
                   
                          default:
                              homePage(namespace: namespace, expand: ExpandSection(title: "jkjkj", description: "", imageName: "", backgroundColor: .clear))

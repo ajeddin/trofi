@@ -10,6 +10,8 @@ import SwiftData
 struct ContentView: View {
     @StateObject var viewModel = HomeViewModel()
     @StateObject var viewModelTwo = HomeViewModel()
+    @StateObject var sharedInsightsModel = InsightsModel()
+
 
     @Namespace var namespace
     @Namespace var namespace3
@@ -31,6 +33,8 @@ struct ContentView: View {
                     .tabItem {
                         Label("Insights", systemImage: "chart.xyaxis.line")}
                     .toolbar(.hidden, for: .tabBar)
+                    .environmentObject(sharedInsightsModel)
+                   
                recipeView(namespace: namespace)
                     .environmentObject(viewModelTwo)
 
@@ -39,6 +43,15 @@ struct ContentView: View {
                     .toolbar(.hidden, for: .tabBar)
                 
             }
+            .overlay(
+                Group {
+                if viewModel.showItems {
+                    FirstExpandedView(namespace: namespace, sharedInsightsModel: InsightsModel())
+                        .environmentObject(sharedInsightsModel)
+                        .environmentObject(viewModel)
+                }
+            }
+            )
         }
             else{
             TabView {

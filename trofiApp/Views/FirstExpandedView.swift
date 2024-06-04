@@ -27,6 +27,7 @@ struct FirstExpandedView: View {
     @State private var textField: String = ""
     @State private var appear: Bool = false
     @EnvironmentObject var viewModel: HomeViewModel
+    @ObservedObject var sharedInsightsModel: InsightsModel
     @State var selection = 0
     @State private var title: String = ""
     @State private var recipe: String = ""
@@ -237,7 +238,7 @@ struct FirstExpandedView: View {
                             context.insert(loggedMeal)
                             
                             try? context.save()
-                            
+                            sharedInsightsModel.totalMealsLogged += 1 // Increment the totalMealsLogged
                             viewModel.showItems = false
                             viewModel.moveItems = false
                         }
@@ -328,7 +329,7 @@ struct FirstExpandedView_Preview: PreviewProvider {
     @Namespace static var namespace
     
     static var previews: some View {
-        FirstExpandedView(namespace: namespace)
+        FirstExpandedView(namespace: namespace, sharedInsightsModel: InsightsModel())
             .environmentObject(HomeViewModel())
     }
 }
