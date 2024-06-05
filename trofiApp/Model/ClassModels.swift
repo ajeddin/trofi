@@ -11,10 +11,11 @@ import SwiftData
 @Model
 class LoggedMeals : Identifiable{
     var id : String =  ""
-    var imageData: Data?
+    var date: Date = Date.now
+    var imageData: Data?;
     var type: String = ""
     var price: Float = 0.0
-    var title:String = ""
+    var title:String = "";
     var descriptionMeal : String = ""
     var recipeLink : String = ""
     var rating : Float = 0
@@ -34,16 +35,19 @@ class LoggedMeals : Identifiable{
 @Model
 class RecipeData : Identifiable{
     var id : String =  ""
-    var imageData: Data?
-    var title:String = ""
+    var imageData: String = "";
+    var title:String = "";
     var descriptionMeal : String = ""
     var recipeLink : String = ""
+    var recipeSource: String = ""
 
-    init( imageData: Data? = nil,  title: String, descriptionMeal: String, recipeLink: String ) {
+    init( imageData: String ,  title: String, descriptionMeal: String, recipeLink: String, recipeSource: String ) {
         self.id = UUID().uuidString
         self.imageData = imageData
         self.title = title
         self.descriptionMeal = descriptionMeal
         self.recipeLink = recipeLink
+        self.recipeSource = recipeSource
+
     }
 }
