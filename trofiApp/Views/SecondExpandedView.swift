@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SecondExpandedView: View {
     
@@ -13,16 +14,14 @@ struct SecondExpandedView: View {
     @State private var textField: String = ""
     @State private var appear: Bool = false
     @EnvironmentObject var viewModel: HomeViewModel
-    
+    @Environment(\.modelContext) private var context
     @ObservedObject var networkManager = NetworkManager()
         @State private var searchQuery = ""
-
         var body: some View {
             NavigationView {
                 
                 ZStack {
                     
-                    Color.gray0.ignoresSafeArea()
                     ZStack(alignment: .bottom) {
                         
                         VStack(alignment: .leading, spacing: 16) {
@@ -31,7 +30,7 @@ struct SecondExpandedView: View {
                                 Text("Recipe Search")
                                     .font(.title)
                                     .fontWeight(.bold)
-                                    .foregroundStyle(.gray900)
+                                    .foregroundStyle(Color.backGround)
                                 
                                 
                                 
@@ -63,7 +62,7 @@ struct SecondExpandedView: View {
                                     VStack {
                                         TextField("Search for recipes", text: $searchQuery, onCommit: {
                                             networkManager.fetchRecipes(query: searchQuery)
-                                        })
+                                        }).background(Color("backgroundColor"))
                                         
                                         //                                                    .padding()
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -89,7 +88,9 @@ struct SecondExpandedView: View {
                                                     }
                                                 }
                                             }
-                                        }
+                                            .scrollContentBackground(.hidden)
+
+                                        }.scrollContentBackground(.hidden)
                                     }
                                     Spacer()
                                     
@@ -108,11 +109,11 @@ struct SecondExpandedView: View {
                         .padding(.bottom, 50)
                     }
                     .fontDesign(.rounded)
-                    .background(
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .fill(.gray0)
-                            .matchedGeometryEffect(id: "background", in: namespace)
-                    )
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+//                            .fill(.gray0)
+//                            .matchedGeometryEffect(id: "background", in: namespace)
+//                    )
                     .mask({
                         RoundedRectangle(cornerRadius: 24, style: .continuous)
                             .matchedGeometryEffect(id: "mask", in: namespace)
@@ -131,6 +132,9 @@ struct SecondExpandedView: View {
 
     struct RecipeDetailView: View {
         let recipe: Recipe
+        
+        @Environment(\.modelContext) private var context
+        @EnvironmentObject var viewModel: HomeViewModel
 
         var body: some View {
             VStack {
@@ -139,7 +143,7 @@ struct SecondExpandedView: View {
                 } placeholder: {
                     ProgressView()
                 }
-                .frame(height: 200)
+                .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 10))
 
                 Text(recipe.label)
@@ -155,6 +159,24 @@ struct SecondExpandedView: View {
                     .padding()
             }
             .navigationTitle("Recipe Details")
+            .toolbar {
+                                Button {
+                                    let recipeData = RecipeData(imageData: recipe.image,title: recipe.label, descriptionMeal: "Fixing", recipeLink: recipe.url, recipeSource: recipe.source)
+                                    
+                                    context.insert(recipeData)
+                                    try? context.save()
+                                    withAnimation(.spring(response: 0.45, dampingFraction: 1.2, blendDuration: 2)) {
+                                        viewModel.showItems = false
+                                        HapticManager.instance.impact(style: .light)
+                                        viewModel.selectedExpandIndex = nil}
+                                    
+                                    
+                                    
+                                } label: {
+                                    Image(systemName: "heart")
+                                }
+
+            }
             .navigationBarTitleDisplayMode(.inline)
         }
     }

@@ -25,6 +25,10 @@
 		213987712BFB98350050214E /* FirstExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2139876E2BFB98350050214E /* FirstExpandedView.swift */; };
 		213987722BFB98CF0050214E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987642BFB978A0050214E /* Colors.swift */; };
 		213987742BFB9CC20050214E /* viewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987732BFB9CC20050214E /* viewController.swift */; };
+		2171CAA32C0F4F2A00BAF926 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2171CAA22C0F4F2A00BAF926 /* ShareViewController.swift */; };
+		2171CAA62C0F4F2A00BAF926 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2171CAA42C0F4F2A00BAF926 /* MainInterface.storyboard */; };
+		2171CAAA2C0F4F2A00BAF926 /* recipeExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2171CAA02C0F4F2A00BAF926 /* recipeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2171CAAE2C0F4F5500BAF926 /* ClassModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186302B2BFE302600599708 /* ClassModels.swift */; };
 		218630142BFCE19600599708 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218630132BFCE19600599708 /* WidgetKit.framework */; };
 		218630162BFCE19600599708 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218630152BFCE19600599708 /* SwiftUI.framework */; };
 		218630192BFCE19600599708 /* LogDIshWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218630182BFCE19600599708 /* LogDIshWidgetBundle.swift */; };
@@ -39,6 +43,16 @@
 		C1D7CC262C08CFF100206BD2 /* InsightsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D7CC252C08CFF100206BD2 /* InsightsModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2171CAA82C0F4F2A00BAF926 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2139871E2BFB767C0050214E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2171CA9F2C0F4F2A00BAF926;
+			remoteInfo = recipeExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		218630262BFCE19700599708 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -46,6 +60,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				2171CAAA2C0F4F2A00BAF926 /* recipeExtension.appex in Embed Foundation Extensions */,
 				218630252BFCE19700599708 /* LogDIshWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -74,6 +89,11 @@
 		2139876C2BFB98350050214E /* SecondExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondExpandedView.swift; sourceTree = "<group>"; };
 		2139876E2BFB98350050214E /* FirstExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstExpandedView.swift; sourceTree = "<group>"; };
 		213987732BFB9CC20050214E /* viewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
+		2171CAA02C0F4F2A00BAF926 /* recipeExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = recipeExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2171CAA22C0F4F2A00BAF926 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		2171CAA52C0F4F2A00BAF926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		2171CAA72C0F4F2A00BAF926 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2171CAAF2C0F500200BAF926 /* recipeExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = recipeExtension.entitlements; sourceTree = "<group>"; };
 		218630112BFCE19600599708 /* LogDIshWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LogDIshWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		218630132BFCE19600599708 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		218630152BFCE19600599708 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -99,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2171CA9D2C0F4F2A00BAF926 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2186300E2BFCE19600599708 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -117,6 +144,7 @@
 				2186302D2BFE307100599708 /* trofi.entitlements */,
 				213987282BFB767C0050214E /* trofiApp */,
 				218630172BFCE19600599708 /* LogDIshWidget */,
+				2171CAA12C0F4F2A00BAF926 /* recipeExtension */,
 				218630122BFCE19600599708 /* Frameworks */,
 				213987272BFB767C0050214E /* Products */,
 			);
@@ -127,6 +155,7 @@
 			children = (
 				213987262BFB767C0050214E /* trofi.app */,
 				218630112BFCE19600599708 /* LogDIshWidgetExtension.appex */,
+				2171CAA02C0F4F2A00BAF926 /* recipeExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +230,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2171CAA12C0F4F2A00BAF926 /* recipeExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2171CAAF2C0F500200BAF926 /* recipeExtension.entitlements */,
+				2171CAA22C0F4F2A00BAF926 /* ShareViewController.swift */,
+				2171CAA42C0F4F2A00BAF926 /* MainInterface.storyboard */,
+				2171CAA72C0F4F2A00BAF926 /* Info.plist */,
+			);
+			path = recipeExtension;
+			sourceTree = "<group>";
+		};
 		218630122BFCE19600599708 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,11 +279,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				2171CAA92C0F4F2A00BAF926 /* PBXTargetDependency */,
 			);
 			name = trofi;
 			productName = trofiApp;
 			productReference = 213987262BFB767C0050214E /* trofi.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2171CA9F2C0F4F2A00BAF926 /* recipeExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2171CAAD2C0F4F2A00BAF926 /* Build configuration list for PBXNativeTarget "recipeExtension" */;
+			buildPhases = (
+				2171CA9C2C0F4F2A00BAF926 /* Sources */,
+				2171CA9D2C0F4F2A00BAF926 /* Frameworks */,
+				2171CA9E2C0F4F2A00BAF926 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = recipeExtension;
+			productName = recipeExtension;
+			productReference = 2171CAA02C0F4F2A00BAF926 /* recipeExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		218630102BFCE19600599708 /* LogDIshWidgetExtension */ = {
 			isa = PBXNativeTarget;
@@ -275,6 +333,9 @@
 					213987252BFB767C0050214E = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
+					2171CA9F2C0F4F2A00BAF926 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 					218630102BFCE19600599708 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -295,6 +356,7 @@
 			targets = (
 				213987252BFB767C0050214E /* trofi */,
 				218630102BFCE19600599708 /* LogDIshWidgetExtension */,
+				2171CA9F2C0F4F2A00BAF926 /* recipeExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -307,6 +369,14 @@
 				213987312BFB767D0050214E /* Preview Assets.xcassets in Resources */,
 				213987462BFB80F60050214E /* dala-floda-medium.ttf in Resources */,
 				2139872E2BFB767D0050214E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2171CA9E2C0F4F2A00BAF926 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2171CAA62C0F4F2A00BAF926 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +417,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2171CA9C2C0F4F2A00BAF926 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2171CAAE2C0F4F5500BAF926 /* ClassModels.swift in Sources */,
+				2171CAA32C0F4F2A00BAF926 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2186300D2BFCE19600599708 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,6 +438,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2171CAA92C0F4F2A00BAF926 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2171CA9F2C0F4F2A00BAF926 /* recipeExtension */;
+			targetProxy = 2171CAA82C0F4F2A00BAF926 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2171CAA42C0F4F2A00BAF926 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2171CAA52C0F4F2A00BAF926 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		213987322BFB767D0050214E /* Debug */ = {
@@ -546,6 +644,58 @@
 			};
 			name = Release;
 		};
+		2171CAAB2C0F4F2A00BAF926 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = recipeExtension/recipeExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42NWXG687M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = recipeExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = recipeExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.recipeExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2171CAAC2C0F4F2A00BAF926 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = recipeExtension/recipeExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42NWXG687M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = recipeExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = recipeExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.recipeExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		218630272BFCE19700599708 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -617,6 +767,15 @@
 			buildConfigurations = (
 				213987352BFB767D0050214E /* Debug */,
 				213987362BFB767D0050214E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2171CAAD2C0F4F2A00BAF926 /* Build configuration list for PBXNativeTarget "recipeExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2171CAAB2C0F4F2A00BAF926 /* Debug */,
+				2171CAAC2C0F4F2A00BAF926 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

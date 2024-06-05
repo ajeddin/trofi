@@ -60,7 +60,7 @@ struct FirstExpandedView: View {
         
         
         ZStack {
-            Color.gray0.ignoresSafeArea()
+            Color.foreGround.ignoresSafeArea()
             ZStack(alignment: .bottom) {
                 
                 VStack(alignment: .leading, spacing: 16) {
@@ -69,7 +69,7 @@ struct FirstExpandedView: View {
                         Text("Log Meal")
                             .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
                             .fontWeight(.bold)
-                            .foregroundStyle(.gray900)
+                            .foregroundStyle(Color.backGround)
 
                         
                         
@@ -137,9 +137,9 @@ struct FirstExpandedView: View {
                         VStack{
                             Spacer()
                             Picker("", selection: $selection) {
-                                Text("Homecooked").tag(0)                        .foregroundColor(Color.accentColor)
+                                Text("Homecooked").tag(0)                        .foregroundColor(Color.backGround)
                                     .background(Color.accentColor)
-                                Text("Restaurant").tag(1)                        .foregroundColor(Color.accentColor)
+                                Text("Restaurant").tag(1)                        .foregroundColor(Color.backGround)
                                 
                             }
                             .foregroundColor(Color.accentColor)
@@ -270,7 +270,7 @@ struct FirstExpandedView: View {
             .fontDesign(.rounded)
             .background(
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(.gray0)
+                    .fill(Color("backgroundColor"))
                     .matchedGeometryEffect(id: "background", in: namespace)
             )
             .mask({

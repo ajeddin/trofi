@@ -17,13 +17,7 @@ struct homePage: View {
     @State private var selectedExpandIndex: Int? = nil
     var namespace: Namespace.ID
     
-    let section: [ExpandSection] = [
-//        ExpandSection(title: "Log Meal", description: "Log and track your meal", imageName: "takeoutbag.and.cup.and.straw", backgroundColor: .orange),
-//        
-//        ExpandSection(title: "Explore Recipes", description: "Explore recipes", imageName: "map.fill", backgroundColor: .pink),
-//        
-//        ExpandSection(title: "Stay", description: "Find the perfect accommodation for a comfortable stay.", imageName: "house.fill", backgroundColor: .teal),
-    ]
+    let section: [ExpandSection] = []
     
     let expand: ExpandSection
     
@@ -39,7 +33,7 @@ struct homePage: View {
                      if let index = viewModel.selectedExpandIndex {
                          switch index {
                          case 0:
-                             FirstExpandedView(namespace: namespace, sharedInsightsModel: InsightsModel())
+                             FirstExpandedView(namespace: namespace)
                   
                          default:
                              homePage(namespace: namespace, expand: ExpandSection(title: "jkjkj", description: "", imageName: "", backgroundColor: .clear))
@@ -105,7 +99,7 @@ extension homePage {
                                         }
                                         
                                     } label: {
-//                                        ExpandView(expand: section[index])
+//                                        Text("Hello")   
                                     }
                                     .buttonStyle(BouncyButton())
                                 }
@@ -140,12 +134,12 @@ extension homePage {
                         Text("trofi")
                             .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
                             .kerning(4)
-                        
+//                            .background(Color.backGround)
                         Spacer()
                     }
                     //
                     
-                    Divider().frame(height: 1)
+                    Divider().frame(height: 1).background(.backGround)
                     ZStack{
                         Color.accentColor.opacity(0.1).cornerRadius(14)
                         
@@ -154,21 +148,29 @@ extension homePage {
                             .datePickerStyle(.graphical)
                     }
 //                    .background(Color("AccentColor").opacity(0.1))
-                    Divider()
+//                    Divider()
                     
                     
                 }
                 .padding(.top, 24)
 //
-                
+                Divider().frame(height: 1).background(.backGround)
+//                HStack{
+//                    Text("Logged Meals")
+//                        .font(.custom("DalaFloda-Medium", size: 25, relativeTo: .title))
+//                        .kerning(4)
+////                            .background(Color.backGround)
+//                    Spacer()
+//                }
                 ScrollView {
                     ForEach(meals, id: \.id) { meal in
+                        
                         if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
-                        } else {
-                            // Provide a placeholder image or handle the case where imageData is nil or invalid
+                            } else {
+
                             Image(systemName: "logoTrofi")
                                 .resizable()
                                 .scaledToFit()
@@ -180,11 +182,9 @@ extension homePage {
             .frame(maxWidth: .infinity)
 
             .scrollIndicators(.hidden)
-//            .scaleEffect(viewModel.moveItems ? 0.8 : 1, anchor: .bottom)
         }
         )
         .padding(.horizontal, 20)
-        .background(.gray0)
 
     }
 }
@@ -196,46 +196,3 @@ func dataToImage(_ data: Data?) -> UIImage{
     var uiImage: UIImage = UIImage(data: data!)!
     return uiImage
 }
-
-
-
-
-
-
-//struct ExpandView: View {
-//    let expand: ExpandSection
-//
-//    var body: some View {
-//        HStack(alignment: .top, spacing: 16) {
-//            Image(systemName: expand.imageName)
-//                .font(.body)
-//                .fontWeight(.semibold)
-//                .padding(8)
-//                .foregroundStyle(Color("AccentColor"))
-//                .background(expand.backgroundColor.gradient)
-//                .clipShape(Circle())
-//
-//            VStack(alignment: .leading, spacing: 4) {
-//                Text(expand.title)
-//                    .font(.title3)
-//                    .fontWeight(.bold)
-//                    .foregroundStyle(Color("AccentColor"))
-//
-//                Text(expand.description)
-//                    .font(.callout)
-//                    .foregroundStyle(Color("AccentColor"))
-//            }
-//        }
-//        .fontDesign(.rounded)
-//        .padding(16)
-//        .frame(width: 336, alignment: .leading)
-//        .background(Color("AccentColor").opacity(0.6))
-//        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-//        .overlay {
-//            RoundedRectangle(cornerRadius: 16, style: .continuous)
-//                .stroke(Color("AccentColor"), lineWidth: 0.7)
-//        }
-//    }
-//}
-
-
