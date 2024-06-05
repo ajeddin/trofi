@@ -17,7 +17,8 @@ struct recipeView: View {
     @Environment(\.modelContext) private var context
     @Query private var recipes: [RecipeData]
     var namespace: Namespace.ID
-    
+    var geoProx : GeometryProxy
+
 
     var body: some View {
         
@@ -30,12 +31,12 @@ struct recipeView: View {
                      if let index = viewModelTwo.selectedExpandIndex {
                          switch index {
                          case 0:
-                             SecondExpandedView(namespace: namespace)
+                             SecondExpandedView(namespace: namespace, geoProx: geoProx)
 //                         case 1:
 //                             SecondExpandedView(namespace: namespace)
 //
                          default:
-                             recipeView(namespace: namespace)
+                             Text("Failed")
                          }
                      }
                  } else {
@@ -93,7 +94,7 @@ extension recipeView {
     }
     
     var lowFidelityTwo: some View {
-        NavigationView {
+        NavigationStack {
 
         ZStack(alignment: .bottom, content: {
             //        ZStack{
@@ -118,7 +119,7 @@ extension recipeView {
                 //
                 
                 List(recipes) { recipe in
-                    NavigationLink(destination: RecipeDetail(recipe: recipe)) {
+                    NavigationLink(destination: RecipeDetail(recipe: recipe, geoProx: geoProx)) {
                         HStack {
                             
                             AsyncImage(url: URL(string: recipe.imageData)) { image in
@@ -156,17 +157,18 @@ extension recipeView {
     }
 }
 
-struct recipeView_Preview: PreviewProvider {
-    @Namespace static var namespace
-    
-    static var previews: some View {
-        recipeView(namespace: namespace)
-            .environmentObject(HomeViewModel())
-    }
-}
+//struct recipeView_Preview: PreviewProvider {
+//    @Namespace static var namespace
+//    
+//    static var previews: some View {
+//        recipeView(namespace: namespace)
+//            .environmentObject(HomeViewModel())
+//    }
+//}
 
 struct RecipeDetail: View {
     let recipe: RecipeData
+    var geoProx : GeometryProxy
 
     var body: some View {
         VStack {

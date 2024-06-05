@@ -16,9 +16,10 @@ struct galleryView: View {
       @Query private var meals: [LoggedMeals]
     
       @State private var selectedMeal: LoggedMeals? = nil
+    var geoProx : GeometryProxy
 
       var body: some View {
-          NavigationView {
+          NavigationStack {
               ScrollView {
                   LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
                       ForEach(meals) { meal in
@@ -97,5 +98,7 @@ struct DetailedMealView: View {
 }
 
 #Preview {
-    galleryView()
+    GeometryReader{ geoProx in
+        galleryView(geoProx: geoProx)
+    }
 }

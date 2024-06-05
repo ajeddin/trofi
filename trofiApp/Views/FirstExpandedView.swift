@@ -24,6 +24,8 @@ struct FirstExpandedView: View {
     @FocusState private var isUsernameFocused: Bool
 
     var namespace: Namespace.ID
+    var geoProx : GeometryProxy
+
     @State private var textField: String = ""
     @State private var appear: Bool = false
     @EnvironmentObject var viewModel: HomeViewModel
@@ -333,7 +335,10 @@ struct FirstExpandedView_Preview: PreviewProvider {
     @Namespace static var namespace
     
     static var previews: some View {
-        FirstExpandedView(namespace: namespace)
-            .environmentObject(HomeViewModel())
+        GeometryReader{geoProx in
+            FirstExpandedView(namespace: namespace, geoProx: geoProx)
+                .environmentObject(HomeViewModel())
+        }
     }
 }
+

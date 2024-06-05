@@ -34,6 +34,7 @@ struct insightsView: View {
     @Environment(\.modelContext) private var context
     @Query var meals: [LoggedMeals]
     @Query var recipes: [RecipeData]
+    var geoProx : GeometryProxy
 
         
     
@@ -141,9 +142,9 @@ struct BarChartView: View {
      }
  }
 
-
-
-
-#Preview {
-    insightsView()
-}
+//
+//
+//
+//#Preview {
+//    insightsView()
+//}
