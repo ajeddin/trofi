@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Charts
+import Foundation
+import SwiftData
 
 
 
@@ -14,7 +16,7 @@ import Charts
 struct RatingData: Identifiable {
     let id = UUID()
     let date: Date
-    let rating: Double
+    let rating: Float
 }
 
 
@@ -29,6 +31,11 @@ struct CookingFrequencyData: Identifiable {
 struct insightsView: View {
     @StateObject var sharedInsightsModel = InsightsModel()
 
+    @Environment(\.modelContext) private var context
+    @Query var meals: [LoggedMeals]
+    @Query var recipes: [RecipeData]
+
+        
     
     var body: some View {
         ScrollView {
@@ -70,37 +77,12 @@ struct insightsView: View {
             .padding()
         }
         .onAppear {
-            // Load your data here
-            loadData()
+
+            sharedInsightsModel.calculateInsights(from: meals, recipes: recipes)
+
         }
     }
     
-    func loadData() {
-        let exampleData = [
-          
-                    
-                   RatingData(date: Date(timeIntervalSinceNow: -86400 * 8), rating: 2.0),
-                   RatingData(date: Date(timeIntervalSinceNow: -86400 * 7), rating: 1.5),
-                   RatingData(date: Date(timeIntervalSinceNow: -86400 * 6), rating: 3.6),
-                   RatingData(date: Date(timeIntervalSinceNow: -86400 * 5), rating: 4.2),
-                   RatingData(date: Date(timeIntervalSinceNow: -86400 * 4), rating: 5.0),
-                   RatingData(date: Date(timeIntervalSinceNow: -86400 * 3), rating: 3.7),
-                   RatingData(date: Date(timeIntervalSinceNow: -86400 * 2), rating: 4.2),
-                   RatingData(date: Date(timeIntervalSinceNow: -86400 * 1), rating: 4.7)
-               ]
-        sharedInsightsModel.averageRatingData = exampleData
-        
-        let exampleCookingFrequencyData = [
-                   CookingFrequencyData(period: "Monday", count: 2),
-                   CookingFrequencyData(period: "Tuesday", count: 3),
-                   CookingFrequencyData(period: "Wednesday", count: 1),
-                   CookingFrequencyData(period: "Thursday", count: 4),
-                   CookingFrequencyData(period: "Friday", count: 5),
-                   CookingFrequencyData(period: "Saturday", count: 3),
-                   CookingFrequencyData(period: "Sunday", count: 2)
-               ]
-        sharedInsightsModel.cookingFrequencyData = exampleCookingFrequencyData
-           }
 }
 
 struct InsightCard: View {

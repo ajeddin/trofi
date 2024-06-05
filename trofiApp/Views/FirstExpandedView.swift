@@ -240,6 +240,8 @@ struct FirstExpandedView: View {
                                 context.insert(loggedMeal)
                                 
                                 try? context.save()
+                            
+
                                 
                                 viewModel.showItems = false
                                 viewModel.moveItems = false

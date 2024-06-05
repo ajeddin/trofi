@@ -191,14 +191,19 @@ extension homePage {
                                         
                                     }
                                     
-                                    VStack(alignment: .trailing, spacing: 15) {
+                                    VStack(alignment: .leading, spacing: 15) {
                                         
+                                        HStack{
+                                            
                                         Text("\(meal.title)")
                                             .font(.custom("DalaFloda-Medium", size: 30, relativeTo: .title2))
                                             .fontWeight(.bold)
                                             .foregroundColor(.gray0)
-                                            .padding(.trailing, 15)
-                                            .padding(.top, 10)// Add some padding
+                                        
+                                        
+                                    }
+                                    .padding(.trailing, 250)
+                                    .padding(.top, 10)
                                         
                                         //                                        Text("Recipe/Link: \(meal.recipeLink)")
                                         //                                            .font(.body)
