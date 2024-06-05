@@ -123,10 +123,14 @@ extension homePage {
         })
     }
     
+    
+    
+  
+
+    
     var lowFidelity: some View {
         
-        ZStack(alignment: .bottom, content: {
-//        ZStack{
+        ZStack(alignment: .bottom) {
             VStack{
                 
                 VStack(alignment: .center) {
@@ -169,7 +173,70 @@ extension homePage {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
-                            } else {
+                              
+                            HStack(alignment: .bottom, spacing: 20){
+                                ZStack{
+                                    if let imageData = meal.imageData, let image = UIImage(data: imageData) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .frame(width: 344, height: 200)
+                                            .scaledToFit()
+                                            .cornerRadius(16)
+                                            .clipped()
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 16)
+                                                    .stroke(Color.accentColor, lineWidth: 4)
+                                            )
+                                        
+                                        
+                                    }
+                                    
+                                    VStack(alignment: .trailing, spacing: 15) {
+                                        
+                                        Text("\(meal.title)")
+                                            .font(.custom("DalaFloda-Medium", size: 30, relativeTo: .title2))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.gray0)
+                                            .padding(.trailing, 15)
+                                            .padding(.top, 10)// Add some padding
+                                        
+                                        //                                        Text("Recipe/Link: \(meal.recipeLink)")
+                                        //                                            .font(.body)
+                                        //
+                                        //                                        Text("Notes: \(meal.descriptionMeal)")
+                                        //                                            .font(.body)
+                                        Spacer ()
+                                        
+                                        HStack{
+                                            Text("Rating: \(meal.rating, specifier: "%.1f")" )
+                                                .foregroundColor(.gray0)
+                                                .font(.custom("DalaFloda-Medium", size: 20, relativeTo: .body))
+                                                .padding(.trailing, 5) // Add some padding
+                                            
+                                            Image(systemName: "star.square")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 25, height: 20)
+                                                .foregroundColor(.accentColor)
+                                            
+                                            
+                                        }
+                                        .padding(.bottom, 10)
+                                        .padding(.trailing, 200)
+                                    }
+                                }
+                                
+                                
+                                
+                                
+                            }
+
+                            
+                            
+                            
+                            
+                        } else {
+                            // Provide a placeholder image or handle the case where imageData is nil or invalid
 
                             Image(systemName: "logoTrofi")
                                 .resizable()
@@ -183,7 +250,7 @@ extension homePage {
 
             .scrollIndicators(.hidden)
         }
-        )
+        
         .padding(.horizontal, 20)
 
     }
