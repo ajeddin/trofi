@@ -11,6 +11,8 @@ import SwiftData
 struct SecondExpandedView: View {
     
     var namespace: Namespace.ID
+    var geoProx : GeometryProxy
+
     @State private var textField: String = ""
     @State private var appear: Bool = false
     @EnvironmentObject var viewModel: HomeViewModel
@@ -18,7 +20,7 @@ struct SecondExpandedView: View {
     @ObservedObject var networkManager = NetworkManager()
         @State private var searchQuery = ""
         var body: some View {
-            NavigationView {
+            NavigationStack {
                 
                 ZStack {
                     
@@ -185,7 +187,9 @@ struct SecondExpandedView_Preview: PreviewProvider {
     @Namespace static var namespace
     
     static var previews: some View {
-        SecondExpandedView(namespace: namespace)
-            .environmentObject(HomeViewModel())
+        GeometryReader{geoProx in
+            SecondExpandedView(namespace: namespace, geoProx: geoProx)
+                .environmentObject(HomeViewModel())
+        }
     }
 }

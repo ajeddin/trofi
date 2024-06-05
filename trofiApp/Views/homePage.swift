@@ -17,27 +17,25 @@ struct homePage: View {
     @State private var selectedExpandIndex: Int? = nil
     var namespace: Namespace.ID
     let calendar = Calendar.current
+    var geoProx : GeometryProxy
+
     
     let section: [ExpandSection] = []
     
-    let expand: ExpandSection
     
     var body: some View {
-        
+
         ZStack(alignment: .bottomTrailing) {
-            //             ContentView()
             lowFidelity
-            
-            // This controls navigation to other views. Currently there are 4 main views, you can add more if you want.
             
             if viewModel.selectedExpandIndex != nil {
                 if let index = viewModel.selectedExpandIndex {
                     switch index {
                     case 0:
-                        FirstExpandedView(namespace: namespace)
+                        FirstExpandedView(namespace: namespace, geoProx: geoProx)
                         
                     default:
-                        homePage(namespace: namespace, expand: ExpandSection(title: "jkjkj", description: "", imageName: "", backgroundColor: .clear))
+                        Text("Fail")
                     }
                 }
             } else {
@@ -54,14 +52,7 @@ struct homePage: View {
 }
 
 
-struct HomeView_Preview: PreviewProvider {
-    @Namespace static var namespace
-    
-    static var previews: some View {
-        homePage(namespace: namespace, expand: ExpandSection(title: "Send", description: "Send tokens or collectibles to any address or ENS username.", imageName: "paperplane.fill", backgroundColor: .blue))
-            .environmentObject(HomeViewModel())
-    }
-}
+
 
 extension homePage {
     var plusButton: some View {
@@ -83,6 +74,7 @@ extension homePage {
     }
     
     var combinedViews: some View {
+        
         ZStack {
             if !viewModel.showItems {
                 plusButton
@@ -128,9 +120,10 @@ extension homePage {
     
     
     
-    
+
     var lowFidelity: some View {
-        NavigationView{
+        
+        NavigationStack{
             ZStack(alignment: .bottom) {
                 VStack{
                     
@@ -142,11 +135,13 @@ extension homePage {
                             //                            .background(Color.backGround)
                             Spacer()
                         }
+                        .padding(.leading,5)
                         //
                         
                         Divider().frame(height: 0.5).background(.backGround)
                         ZStack{
                             Color.accentColor.opacity(0.1).cornerRadius(14)
+                            
                             
                             DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
                             //                        .padding(.horizontal)
@@ -163,26 +158,42 @@ extension homePage {
                    
                         List{
                             Section{
-                                ForEach(meals, id: \.id) { meal in
-                                    if (calendar.isDate(meal.date, inSameDayAs: selectedDate)){
-                                        NavigationLink(destination: loggedMealView(meal: meal)) {
-                                            LoggedMealsScroll(meal: meal)
-                                        }.scrollContentBackground(.hidden)
+                                    ForEach(meals, id: \.id) { meal in
+                                        if (calendar.isDate(meal.date, inSameDayAs: selectedDate)){
+                                            NavigationLink(destination: loggedMealView(meal: meal)) {
+                                                Rectangle().frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5).hidden()
+                                            }.overlay{
+                                                LoggedMealsScroll(meal: meal, geoProx: geoProx)
+                                                    .overlay{
+                                                        Color.gray.opacity(0.1)
+//                                                            .frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5)
+//                                                            .cornerRadius(25)
+                                                    }
+                                            }
+                                            
+                                            .scrollContentBackground(.hidden)
+                                            
+                                            
+                                                .buttonStyle(.plain)
+                                            
+                                            
+                                        }
                                         
-                                    }
+                                    } .onDelete(perform: delete)
                                     
-                                } .onDelete(perform: delete)
-                            }header: {
                                 
-                                Text("Products")
+                                    
+                                }header: {
+                                
+                                Text("Logged Meals")
                             }
+                                
                     }.scrollContentBackground(.hidden)
 //                    .frame(maxWidth: .infinity)
                     
                     .scrollIndicators(.hidden)
                 }
                 
-                .padding(.horizontal, 20)
             }
         }
     }
@@ -205,50 +216,56 @@ func dataToImage(_ data: Data?) -> UIImage{
 
 struct LoggedMealsScroll: View {
     var meal : LoggedMeals
+    var geoProx : GeometryProxy
+
     var body: some View {
         
-        HStack(alignment: .bottom, spacing: 20){
+        
+        HStack{
             ZStack{
                 if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .frame(width: 344, height: 200)
+                        .frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5)
                         .scaledToFit()
-                        .cornerRadius(16)
-                        .clipped()
-                    VStack(alignment: .trailing, spacing: 15) {
-                        
-                        Text("\(meal.title)")
-                            .font(.custom("DalaFloda-Medium", size: 30, relativeTo: .title2))
-                            .fontWeight(.bold)
-                            .foregroundColor(.gray0)
-                            .padding(.trailing, 15)
-                            .padding(.top, 10)
-                            .font(.body)
-                        Spacer ()
-                        
-                        HStack{
-                            Text("Rating: \(meal.rating, specifier: "%.1f")" )
-                                .foregroundColor(.gray0)
-                                .font(.custom("DalaFloda-Medium", size: 20, relativeTo: .body))
-                                .padding(.trailing, 5) // Add some padding
-                            
-                            Image(systemName: "star.square")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 25, height: 20)
-                                .foregroundColor(.accentColor)
-                            
-                            
-                        }
-                        .padding(.bottom, 10)
-                        .padding(.trailing, 200)
-                    }
+                        .cornerRadius(25)
+//                    VStack(alignment: .trailing, spacing: 15) {
+//                        
+//                        Text("\(meal.title)")
+//                            .font(.custom("DalaFloda-Medium", size: 30, relativeTo: .title2))
+//                            .fontWeight(.bold)
+//                            .foregroundColor(.gray0)
+//                            .padding(.trailing, 15)
+//                            .padding(.top, 10)
+//                            .font(.body)
+//                        Spacer ()
+//                        
+//                        HStack{
+//                            Text("Rating: \(meal.rating, specifier: "%.1f")" )
+//                                .foregroundColor(.gray0)
+//                                .font(.custom("DalaFloda-Medium", size: 20, relativeTo: .body))
+//                                .padding(.trailing, 5) // Add some padding
+//                            
+//                            Image(systemName: "star.square")
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(width: geoProx.size.width/10, height:  geoProx.size.height/12.5)
+//                                .foregroundColor(.accentColor)
+//                            
+//                            
+//                        }
+////                        .padding(.bottom, 10)
+////                        .padding(.trailing, 200)
+//                    }
                 }else {
                     
-                    Image(systemName: "logoTrofi")
-                        .resizable()
-                        .scaledToFit()
                 } }}
     }
 }
+//struct HomeView_Preview: PreviewProvider {
+//    @Namespace static var namespace
+//    static var previews: some View {
+//        homePage(namespace: namespace, )
+//            .environmentObject(HomeViewModel())
+//    }
+//}
