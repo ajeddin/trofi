@@ -46,7 +46,7 @@ struct ContentView: View {
             .overlay(
                 Group {
                 if viewModel.showItems {
-                    FirstExpandedView(namespace: namespace, sharedInsightsModel: InsightsModel())
+                    FirstExpandedView(namespace: namespace)
                         .environmentObject(sharedInsightsModel)
                         .environmentObject(viewModel)
                 }

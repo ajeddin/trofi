@@ -26,8 +26,9 @@ struct Recipe: Codable, Identifiable {
     let cuisineType: [String]?
     let mealType: [String]?
     let dishType: [String]?
-
+    let ingredientLines : [String]
+    let healthLabels : [String]
     enum CodingKeys: String, CodingKey {
-        case label, image, source, url, calories, cuisineType, mealType, dishType
+        case label, image, source, url, calories, cuisineType, mealType, dishType, ingredientLines, healthLabels
     }
 }

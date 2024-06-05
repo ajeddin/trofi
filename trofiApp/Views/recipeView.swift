@@ -14,6 +14,8 @@ struct recipeView: View {
     @State private var show: Bool = false
     @State private var appear: Bool = true
     @State private var selectedExpandIndex: Int? = nil
+    @Environment(\.modelContext) private var context
+    @Query private var recipes: [RecipeData]
     var namespace: Namespace.ID
     
 
@@ -40,7 +42,6 @@ struct recipeView: View {
                      ZStack(content: {
                          combinedViewsTwo
                              .padding(20)
-                             //.offset(y: viewModelTwo.showItems ? 0 : -80)
                      })
                      .transition(.scale(scale: 1))
                  }
@@ -92,9 +93,10 @@ extension recipeView {
     }
     
     var lowFidelityTwo: some View {
-        
+        NavigationView {
+
         ZStack(alignment: .bottom, content: {
-//        ZStack{
+            //        ZStack{
             VStack{
                 
                 VStack(alignment: .center) {
@@ -107,29 +109,50 @@ extension recipeView {
                     }
                     //
                     
-                    Divider().frame(height: 1)
-                  
-                    Divider()
+                    Divider().frame(height: 1).background(.backGround)
+                    
                     
                     
                 }
                 .padding(.top, 24)
-//
+                //
                 
-                ScrollView {
-//
-                }
+                List(recipes) { recipe in
+                    NavigationLink(destination: RecipeDetail(recipe: recipe)) {
+                        HStack {
+                            
+                            AsyncImage(url: URL(string: recipe.imageData)) { image in
+                                image.resizable()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 50, height: 50)
+                            .clipShape(RoundedRectangle(cornerRadius: 45))
 
+                            
+                            VStack(alignment: .leading) {
+                                Text(recipe.title)
+                                    .font(.headline)
+                                Text(recipe.recipeSource)
+                                    .font(.subheadline)
+                                    .foregroundColor(.backGround)
+                            }
+                        }
+                    }                                            .scrollContentBackground(.hidden)
+
+                }.scrollContentBackground(.hidden)
+
+                
             }
             .frame(maxWidth: .infinity)
-
+            
             .scrollIndicators(.hidden)
-//            .scaleEffect(viewModelTwo.moveItems ? 0.8 : 1, anchor: .bottom)
+            //            .scaleEffect(viewModelTwo.moveItems ? 0.8 : 1, anchor: .bottom)
         }
         )
         .padding(.horizontal, 20)
-        .background(.gray0)
-
+//        .background(.gray0)
+    }
     }
 }
 
@@ -139,5 +162,38 @@ struct recipeView_Preview: PreviewProvider {
     static var previews: some View {
         recipeView(namespace: namespace)
             .environmentObject(HomeViewModel())
+    }
+}
+
+struct RecipeDetail: View {
+    let recipe: RecipeData
+
+    var body: some View {
+        VStack {
+            AsyncImage(url: URL(string: recipe.imageData)) { image in
+                image.resizable()
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(width: 50, height: 50)
+            .clipShape(RoundedRectangle(cornerRadius: 45))
+
+          
+            Text(recipe.title)
+                .font(.largeTitle)
+                .padding()
+            Text(recipe.descriptionMeal)
+                .font(.caption)
+                .padding()
+            Text("Source: \(recipe.recipeSource)")
+                .font(.subheadline)
+                .padding()
+
+            Link("View Recipe", destination: URL(string: recipe.recipeLink)!)
+                .font(.title2)
+                .padding()
+        }
+        .navigationTitle("Recipe Details")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
