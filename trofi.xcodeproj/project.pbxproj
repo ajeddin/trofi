@@ -25,6 +25,7 @@
 		213987712BFB98350050214E /* FirstExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2139876E2BFB98350050214E /* FirstExpandedView.swift */; };
 		213987722BFB98CF0050214E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987642BFB978A0050214E /* Colors.swift */; };
 		213987742BFB9CC20050214E /* viewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213987732BFB9CC20050214E /* viewController.swift */; };
+		216234E82C1093B5003E6A59 /* loggedMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216234E72C1093B5003E6A59 /* loggedMealView.swift */; };
 		2171CAA32C0F4F2A00BAF926 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2171CAA22C0F4F2A00BAF926 /* ShareViewController.swift */; };
 		2171CAA62C0F4F2A00BAF926 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2171CAA42C0F4F2A00BAF926 /* MainInterface.storyboard */; };
 		2171CAAA2C0F4F2A00BAF926 /* recipeExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2171CAA02C0F4F2A00BAF926 /* recipeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -91,6 +92,7 @@
 		2139876C2BFB98350050214E /* SecondExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondExpandedView.swift; sourceTree = "<group>"; };
 		2139876E2BFB98350050214E /* FirstExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstExpandedView.swift; sourceTree = "<group>"; };
 		213987732BFB9CC20050214E /* viewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
+		216234E72C1093B5003E6A59 /* loggedMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loggedMealView.swift; sourceTree = "<group>"; };
 		2171CAA02C0F4F2A00BAF926 /* recipeExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = recipeExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2171CAA22C0F4F2A00BAF926 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		2171CAA52C0F4F2A00BAF926 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				2139874D2BFB919F0050214E /* recipeView.swift */,
 				2139876C2BFB98350050214E /* SecondExpandedView.swift */,
 				211D62112C0753B8003DBE8F /* recipeViewTwo.swift */,
+				216234E72C1093B5003E6A59 /* loggedMealView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				213987742BFB9CC20050214E /* viewController.swift in Sources */,
+				216234E82C1093B5003E6A59 /* loggedMealView.swift in Sources */,
 				211D62122C0753B8003DBE8F /* recipeViewTwo.swift in Sources */,
 				2139874E2BFB919F0050214E /* recipeView.swift in Sources */,
 				C1D7CC232C00BE5F00206BD2 /* RecipeModels.swift in Sources */,
@@ -596,7 +600,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"trofiApp/Preview Content\"";
-				DEVELOPMENT_TEAM = M8ZG8KDA6A;
+				DEVELOPMENT_TEAM = 42NWXG687M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trofiApp/Info.plist;
@@ -611,7 +615,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.02;
-				PRODUCT_BUNDLE_IDENTIFIER = me.MoeM.trofi;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -629,7 +633,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"trofiApp/Preview Content\"";
-				DEVELOPMENT_TEAM = M8ZG8KDA6A;
+				DEVELOPMENT_TEAM = 42NWXG687M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trofiApp/Info.plist;
@@ -644,7 +648,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.02;
-				PRODUCT_BUNDLE_IDENTIFIER = me.MoeM.trofi;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -711,7 +715,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M8ZG8KDA6A;
+				DEVELOPMENT_TEAM = 42NWXG687M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LogDIshWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LogDIshWidget;
@@ -722,7 +726,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.MoeM.trofi.LogDIshWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.LogDIshWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -738,7 +742,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M8ZG8KDA6A;
+				DEVELOPMENT_TEAM = 42NWXG687M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LogDIshWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LogDIshWidget;
@@ -749,7 +753,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.MoeM.trofi.LogDIshWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jeddin.trofi.LogDIshWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

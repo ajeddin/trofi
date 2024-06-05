@@ -16,6 +16,7 @@ struct homePage: View {
     @State private var appear: Bool = true
     @State private var selectedExpandIndex: Int? = nil
     var namespace: Namespace.ID
+    let calendar = Calendar.current
     
     let section: [ExpandSection] = []
     
@@ -23,32 +24,32 @@ struct homePage: View {
     
     var body: some View {
         
-         ZStack(alignment: .bottomTrailing) {
-//             ContentView()
-             lowFidelity
-             
-             // This controls navigation to other views. Currently there are 4 main views, you can add more if you want.
-
-             if viewModel.selectedExpandIndex != nil {
-                     if let index = viewModel.selectedExpandIndex {
-                         switch index {
-                         case 0:
-                             FirstExpandedView(namespace: namespace)
-                  
-                         default:
-                             homePage(namespace: namespace, expand: ExpandSection(title: "jkjkj", description: "", imageName: "", backgroundColor: .clear))
-                         }
-                     }
-                 } else {
-                     ZStack(content: {
-                         combinedViews
-                             .padding(20)
-                             //.offset(y: viewModel.showItems ? 0 : -80)
-                     })
-                     .transition(.scale(scale: 1))
-                 }
-             
-         }
+        ZStack(alignment: .bottomTrailing) {
+            //             ContentView()
+            lowFidelity
+            
+            // This controls navigation to other views. Currently there are 4 main views, you can add more if you want.
+            
+            if viewModel.selectedExpandIndex != nil {
+                if let index = viewModel.selectedExpandIndex {
+                    switch index {
+                    case 0:
+                        FirstExpandedView(namespace: namespace)
+                        
+                    default:
+                        homePage(namespace: namespace, expand: ExpandSection(title: "jkjkj", description: "", imageName: "", backgroundColor: .clear))
+                    }
+                }
+            } else {
+                ZStack(content: {
+                    combinedViews
+                        .padding(20)
+                    //.offset(y: viewModel.showItems ? 0 : -80)
+                })
+                .transition(.scale(scale: 1))
+            }
+            
+        }
     }
 }
 
@@ -78,7 +79,7 @@ extension homePage {
                 .foregroundStyle(.gray0)
                 .padding(16)
         }
-
+        
     }
     
     var combinedViews: some View {
@@ -99,7 +100,7 @@ extension homePage {
                                         }
                                         
                                     } label: {
-//                                        Text("Hello")   
+                                        //                                        Text("Hello")
                                     }
                                     .buttonStyle(BouncyButton())
                                 }
@@ -125,134 +126,71 @@ extension homePage {
     
     
     
-  
-
+    
+    
     
     var lowFidelity: some View {
-        
-        ZStack(alignment: .bottom) {
-            VStack{
-                
-                VStack(alignment: .center) {
-                    HStack{
-                        Text("trofi")
-                            .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
-                            .kerning(4)
-//                            .background(Color.backGround)
+        NavigationView{
+            ZStack(alignment: .bottom) {
+                VStack{
+                    
+                    VStack(alignment: .center) {
+                        HStack{
+                            Text("trofi")
+                                .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
+                                .kerning(4)
+                            //                            .background(Color.backGround)
+                            Spacer()
+                        }
+                        //
+                        
+                        Divider().frame(height: 0.5).background(.backGround)
+                        ZStack{
+                            Color.accentColor.opacity(0.1).cornerRadius(14)
+                            
+                            DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+                            //                        .padding(.horizontal)
+                                .datePickerStyle(.graphical)
+                        }
+                        //                    .background(Color("AccentColor").opacity(0.1))
+                        //                    Divider()
                         Spacer()
+                        
                     }
+                    .padding(.top, 24)
                     //
-                    
-                    Divider().frame(height: 1).background(.backGround)
-                    ZStack{
-                        Color.accentColor.opacity(0.1).cornerRadius(14)
-                        
-                        DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-                        //                        .padding(.horizontal)
-                            .datePickerStyle(.graphical)
-                    }
-//                    .background(Color("AccentColor").opacity(0.1))
-//                    Divider()
-                    
-                    
-                }
-                .padding(.top, 24)
-//
-                Divider().frame(height: 1).background(.backGround)
-//                HStack{
-//                    Text("Logged Meals")
-//                        .font(.custom("DalaFloda-Medium", size: 25, relativeTo: .title))
-//                        .kerning(4)
-////                            .background(Color.backGround)
-//                    Spacer()
-//                }
-                ScrollView {
-                    ForEach(meals, id: \.id) { meal in
-                        
-                        if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
-                              
-                            HStack(alignment: .bottom, spacing: 20){
-                                ZStack{
-                                    if let imageData = meal.imageData, let image = UIImage(data: imageData) {
-                                        Image(uiImage: image)
-                                            .resizable()
-                                            .frame(width: 344, height: 200)
-                                            .scaledToFit()
-                                            .cornerRadius(16)
-                                            .clipped()
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 16)
-                                                    .stroke(Color.accentColor, lineWidth: 4)
-                                            )
-                                        
+                    //                    Divider().frame(height: 0.5).background(.backGround)
+                   
+                        List{
+                            Section{
+                                ForEach(meals, id: \.id) { meal in
+                                    if (calendar.isDate(meal.date, inSameDayAs: selectedDate)){
+                                        NavigationLink(destination: loggedMealView(meal: meal)) {
+                                            LoggedMealsScroll(meal: meal)
+                                        }.scrollContentBackground(.hidden)
                                         
                                     }
                                     
-                                    VStack(alignment: .trailing, spacing: 15) {
-                                        
-                                        Text("\(meal.title)")
-                                            .font(.custom("DalaFloda-Medium", size: 30, relativeTo: .title2))
-                                            .fontWeight(.bold)
-                                            .foregroundColor(.gray0)
-                                            .padding(.trailing, 15)
-                                            .padding(.top, 10)// Add some padding
-                                        
-                                        //                                        Text("Recipe/Link: \(meal.recipeLink)")
-                                        //                                            .font(.body)
-                                        //
-                                        //                                        Text("Notes: \(meal.descriptionMeal)")
-                                        //                                            .font(.body)
-                                        Spacer ()
-                                        
-                                        HStack{
-                                            Text("Rating: \(meal.rating, specifier: "%.1f")" )
-                                                .foregroundColor(.gray0)
-                                                .font(.custom("DalaFloda-Medium", size: 20, relativeTo: .body))
-                                                .padding(.trailing, 5) // Add some padding
-                                            
-                                            Image(systemName: "star.square")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(width: 25, height: 20)
-                                                .foregroundColor(.accentColor)
-                                            
-                                            
-                                        }
-                                        .padding(.bottom, 10)
-                                        .padding(.trailing, 200)
-                                    }
-                                }
+                                } .onDelete(perform: delete)
+                            }header: {
                                 
-                                
-                                
-                                
+                                Text("Products")
                             }
-
-                            
-                            
-                            
-                            
-                        } else {
-                            // Provide a placeholder image or handle the case where imageData is nil or invalid
-
-                            Image(systemName: "logoTrofi")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                    }
+                    }.scrollContentBackground(.hidden)
+//                    .frame(maxWidth: .infinity)
+                    
+                    .scrollIndicators(.hidden)
                 }
-
+                
+                .padding(.horizontal, 20)
             }
-            .frame(maxWidth: .infinity)
-
-            .scrollIndicators(.hidden)
         }
-        
-        .padding(.horizontal, 20)
-
+    }
+    func delete(_ indexSet: IndexSet) {
+        for i in indexSet {
+            let meal = meals[i]
+            context.delete(meal)
+        }
     }
 }
 
@@ -262,4 +200,55 @@ extension homePage {
 func dataToImage(_ data: Data?) -> UIImage{
     var uiImage: UIImage = UIImage(data: data!)!
     return uiImage
+}
+
+
+struct LoggedMealsScroll: View {
+    var meal : LoggedMeals
+    var body: some View {
+        
+        HStack(alignment: .bottom, spacing: 20){
+            ZStack{
+                if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .frame(width: 344, height: 200)
+                        .scaledToFit()
+                        .cornerRadius(16)
+                        .clipped()
+                    VStack(alignment: .trailing, spacing: 15) {
+                        
+                        Text("\(meal.title)")
+                            .font(.custom("DalaFloda-Medium", size: 30, relativeTo: .title2))
+                            .fontWeight(.bold)
+                            .foregroundColor(.gray0)
+                            .padding(.trailing, 15)
+                            .padding(.top, 10)
+                            .font(.body)
+                        Spacer ()
+                        
+                        HStack{
+                            Text("Rating: \(meal.rating, specifier: "%.1f")" )
+                                .foregroundColor(.gray0)
+                                .font(.custom("DalaFloda-Medium", size: 20, relativeTo: .body))
+                                .padding(.trailing, 5) // Add some padding
+                            
+                            Image(systemName: "star.square")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 25, height: 20)
+                                .foregroundColor(.accentColor)
+                            
+                            
+                        }
+                        .padding(.bottom, 10)
+                        .padding(.trailing, 200)
+                    }
+                }else {
+                    
+                    Image(systemName: "logoTrofi")
+                        .resizable()
+                        .scaledToFit()
+                } }}
+    }
 }
