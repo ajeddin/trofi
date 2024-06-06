@@ -46,16 +46,6 @@
 		C1ECAFEE2C0F558C00693DCF /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ECAFED2C0F558C00693DCF /* MealView.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2171CAA82C0F4F2A00BAF926 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2139871E2BFB767C0050214E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2171CA9F2C0F4F2A00BAF926;
-			remoteInfo = recipeExtension;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		218630262BFCE19700599708 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -288,7 +278,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2171CAA92C0F4F2A00BAF926 /* PBXTargetDependency */,
 			);
 			name = trofi;
 			productName = trofiApp;
@@ -450,14 +439,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2171CAA92C0F4F2A00BAF926 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2171CA9F2C0F4F2A00BAF926 /* recipeExtension */;
-			targetProxy = 2171CAA82C0F4F2A00BAF926 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2171CAA42C0F4F2A00BAF926 /* MainInterface.storyboard */ = {

@@ -63,165 +63,165 @@ struct FirstExpandedView: View {
         
         ZStack {
             Color.foreGround.ignoresSafeArea()
-            ZStack(alignment: .bottom) {
+            ZStack(/*alignment: .bottom*/) {
                 
-                VStack(alignment: .leading, spacing: 16) {
-                    
-                    HStack {
-                        Text("Log Meal")
-                            .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
-                            .fontWeight(.bold)
-                            .foregroundStyle(Color.backGround)
-
+                VStack() {
+                    VStack{
                         
-                        
-                        
-                        Spacer()
-                        Button(action: {
-                            withAnimation(.spring(response: 0.45, dampingFraction: 1.2, blendDuration: 1)) {
-                                viewModel.showItems = false
-                                HapticManager.instance.impact(style: .light)
-                                viewModel.selectedExpandIndex = nil
-                            }
+                        HStack {
+                            Text("Log Meal")
+                                .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
+                                .fontWeight(.bold)
+                                .foregroundStyle(Color.backGround)
                             
-                            //                            viewModel.moveItems = false
                             
-                        }, label: {
-                            Image(systemName: "xmark")
-                                .renderingMode(.template)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.gray100)
-                                .padding(12)
-                                .background(Color.accentColor)
-                                .cornerRadius(32)
-                        })
-                    }
-                    .padding(.top,60)
-                    .padding()
-                    VStack(spacing: 16) {
-                        
-                        VStack{
-                            if let image = selectedImage{
-                                Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: 200,maxHeight: 200)
-                            }
-                            else{
-                                Button {
-                                    showActionSheet = true
-                                    
-                                } label: {
-                                    ZStack{
-                                        Rectangle()
-                                            .fill(Color.accentColor.opacity(0.1))
-                                            .cornerRadius(14)
-                                        Image(systemName: "photo.badge.plus").font(.title)
-                                    }}
-                                .actionSheet(isPresented: $showActionSheet) {
-                                    ActionSheet(title: Text("Select an option"), buttons: [
-                                        .default(Text("Select from Gallery")) {
-                                            sourceType = .photoLibrary
-                                            showImagePicker = true
-                                        },
-                                        .default(Text("Camera")) {
-                                            sourceType = .camera
-                                            showImagePicker = true
-                                        },
-                                        .cancel()
-                                    ])
-                                }
-                                .sheet(isPresented: $showImagePicker) {
-                                    ImagePicker(sourceType: sourceType, selectedImage: $selectedImage)
-                                        .ignoresSafeArea()
-                                }
-                            }
                             
-                        }
-                        
-                        VStack{
+                            
                             Spacer()
-                            Picker("", selection: $selection) {
-                                Text("Homecooked").tag(0)                        .foregroundColor(Color.backGround)
-                                    .background(Color.accentColor)
-                                Text("Restaurant").tag(1)                        .foregroundColor(Color.backGround)
+                            Button(action: {
+                                withAnimation(.spring(response: 0.45, dampingFraction: 1.2, blendDuration: 1)) {
+                                    viewModel.showItems = false
+                                    HapticManager.instance.impact(style: .light)
+                                    viewModel.selectedExpandIndex = nil
+                                }
                                 
-                            }
-                            .foregroundColor(Color.accentColor)
-                            .pickerStyle(.segmented)
-                            //                        .overlay(RoundedRectangle(cornerRadius: 15)
-                            //                                    .stroke(Color.gray, lineWidth: 4)
-                            //                            )
-                            .colorMultiply(Color.accentColor)
-//                            .frame(width: 350)
-                            .padding(.bottom)
+                                //                            viewModel.moveItems = false
+                                
+                            }, label: {
+                                Image(systemName: "xmark")
+                                    .renderingMode(.template)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.gray100)
+                                    .padding(12)
+                                    .background(Color.accentColor)
+                                    .cornerRadius(32)
+                            })
+                        }
+                        .ignoresSafeArea(.all)
+//                        .padding(.top)
+                        .padding([.leading,.trailing])
+                        
+                        VStack() {
                             
-                            TextField(
-                                "Title:",
-                                text: $title
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .stroke(Color.accentColor, lineWidth: 2))
-                            .textFieldStyle(.roundedBorder)
-                            //                        .padding(.leading)
-                            //                        .padding(.trailing)
-                            //                        .padding(.bottom)
-                            .padding([.leading, .trailing, .bottom]) // Adjust the value as needed
-                            
-                            
-                            TextField(
-                                "Notes:",
-                                text: $notes
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .stroke(Color.accentColor, lineWidth: 2))
-                            .textFieldStyle(.roundedBorder)
-                            .padding([.leading, .trailing, .bottom]) // Adjust the value as needed
-                            
-                            
-                            TextField(
-                                "Recipe/Link:",
-                                text: $recipe
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .stroke(Color.accentColor, lineWidth: 2))
-                            .textFieldStyle(.roundedBorder)
-                            .padding([.leading, .trailing, .bottom])
-                            
-                            
-                            TextField(
-                                "Rating:",
-                                value: $rating, formatter: formatter
-                            )
-                            .keyboardType(.decimalPad)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .stroke(Color.accentColor, lineWidth: 2))
-                            .textFieldStyle(.roundedBorder)
-                            .padding([.leading, .trailing, .bottom]) // Adjust the value as needed
-                            
-                            
-                            
-                            //                            Spacer()
-                            
-                            
-                            stars.overlay(
-                                GeometryReader { g in
-                                    let width = rating / CGFloat(maxRating) * g.size.width
-                                    ZStack(alignment: .leading) {
-                                        Rectangle()
-                                            .frame(width: width)
-                                            .foregroundColor(.accentColor)
+                            VStack{
+                                if let image = selectedImage{
+                                    Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: geoProx.size.width/1.9,maxHeight: geoProx.size.height/2.5)
+                                }
+                                else{
+                                    Button {
+                                        showActionSheet = true
+                                        
+                                    } label: {
+                                        ZStack{
+                                            Rectangle()
+                                                .fill(Color.accentColor.opacity(0.1))
+                                                .cornerRadius(14)
+                                            Image(systemName: "photo.badge.plus").font(.title)
+                                        }}
+                                    .actionSheet(isPresented: $showActionSheet) {
+                                        ActionSheet(title: Text("Select an option"), buttons: [
+                                            .default(Text("Select from Gallery")) {
+                                                sourceType = .photoLibrary
+                                                showImagePicker = true
+                                            },
+                                            .default(Text("Camera")) {
+                                                sourceType = .camera
+                                                showImagePicker = true
+                                            },
+                                            .cancel()
+                                        ])
+                                    }
+                                    .sheet(isPresented: $showImagePicker) {
+                                        ImagePicker(sourceType: sourceType, selectedImage: $selectedImage)
+                                            .ignoresSafeArea()
                                     }
                                 }
-                                    .mask(stars)
-                            )
-                            .foregroundColor(.gray)
+                                
+                            }
+                            VStack{
+//                                Spacer()
+                                Picker("", selection: $selection) {
+                                    Text("Homecooked").tag(0)                        .foregroundColor(Color.backGround)
+                                        .background(Color.accentColor)
+                                    Text("Restaurant").tag(1)                        .foregroundColor(Color.backGround)
+                                    
+                                }
+                                .foregroundColor(Color.accentColor)
+                                .pickerStyle(.segmented)
+                          
+                                .colorMultiply(Color.accentColor)
+                                //                            .frame(width: 350)
+                                .padding(.bottom)
+                                
+                                TextField(
+                                    "Title:",
+                                    text: $title
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(Color.accentColor, lineWidth: 2))
+                                .textFieldStyle(.roundedBorder)
+                                //                        .padding(.leading)
+                                //                        .padding(.trailing)
+                                //                        .padding(.bottom)
+                                .padding([.leading, .trailing, .bottom]) // Adjust the value as needed
+                                
+                                
+                                TextField(
+                                    "Notes:",
+                                    text: $notes
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(Color.accentColor, lineWidth: 2))
+                                .textFieldStyle(.roundedBorder)
+                                .padding([.leading, .trailing, .bottom]) // Adjust the value as needed
+                                
+                                
+                                TextField(
+                                    "Recipe/Link:",
+                                    text: $recipe
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(Color.accentColor, lineWidth: 2))
+                                .textFieldStyle(.roundedBorder)
+                                .padding([.leading, .trailing, .bottom])
+                                
+                                
+                                TextField(
+                                    "Rating:",
+                                    value: $rating, formatter: formatter
+                                )
+                                .keyboardType(.decimalPad)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(Color.accentColor, lineWidth: 2))
+                                .textFieldStyle(.roundedBorder)
+                                .padding([.leading, .trailing, .bottom]) // Adjust the value as needed
+                                
+                                
+                                
+                                //                            Spacer()
+                                
+                                
+                                stars.overlay(
+                                    GeometryReader { g in
+                                        let width = rating / CGFloat(maxRating) * g.size.width
+                                        ZStack(alignment: .leading) {
+                                            Rectangle()
+                                                .frame(width: width)
+                                                .foregroundColor(.accentColor)
+                                        }
+                                    }
+                                        .mask(stars)
+                                )
+                                .foregroundColor(.gray)
+                            }
                         }
-                    }
-                    .padding(.horizontal, 15)
-                    .padding(.top, 5)
-                    
+                        //                    .padding(.horizontal, 15)
+                        //                    .padding(.top, 5)
+                    }.frame(maxWidth: geoProx.size.width/1, maxHeight: geoProx.size.height/1.2)
                     
                     
                     Button(action: {
@@ -241,6 +241,37 @@ struct FirstExpandedView: View {
                                 }
                                 context.insert(loggedMeal)
                                 
+                            for num in 1...20{
+                                var loggedMeal = LoggedMeals(type: "Homecooked", price: 223, title: "\(title)", descriptionMeal: "\(notes)", recipeLink: "\(recipe)",rating: Float(rating))
+                                let dateFormatter = DateFormatter()
+
+                                var specificDate: Date {
+                                       // Define the components of the date
+                                       var dateComponents = DateComponents()
+                                       dateComponents.year = 2024
+                                       dateComponents.month = 5
+                                       dateComponents.day = num+10
+                                       
+                                       // Create the date using the current calendar
+                                       let calendar = Calendar.current
+                                       return calendar.date(from: dateComponents) ?? Date()
+                                   }
+                                loggedMeal.date = specificDate
+                                if let imageUnwrapped = selectedImage{
+                                    loggedMeal.imageData = imageUnwrapped.pngData()
+                                    
+                                }
+                                else{
+                                    print("No Image")
+                                }
+                                context.insert(loggedMeal)
+
+
+                            }
+                            
+                            
+                            
+                            
                                 try? context.save()
                             
 
@@ -255,14 +286,14 @@ struct FirstExpandedView: View {
                         
                             .foregroundStyle(.accent)
                         
-                            .frame(width: 300, height: 56, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: geoProx.size.width/1.2, height: geoProx.size.height/13)
                             .clipShape(RoundedRectangle(cornerRadius: 40, style: .continuous))
                             .overlay(
                                 Text("Confirm")
                                     .foregroundColor(.black) // Set the text color
                                     .bold()
                             )
-                            .padding(48)
+                            .padding(.top,30)
                     })
                     .buttonStyle(BouncyButton())
                 }
