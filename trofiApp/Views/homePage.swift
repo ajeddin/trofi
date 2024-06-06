@@ -165,7 +165,7 @@ extension homePage {
                                             .overlay{
                                                 LoggedMealsScroll(meal: meal, geoProx: geoProx)
                                                     .overlay{
-                                                        Color.gray.opacity(0.1)
+                                                        Color.gray.opacity(0.25)
                                                     }
                                             }
                                             
@@ -228,10 +228,17 @@ struct LoggedMealsScroll: View {
                         .frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5)
                         .scaledToFit()
                         .cornerRadius(25)
+                        .blur(radius: 2)
+                    
 //                    VStack(alignment: .trailing, spacing: 15) {
 //                        
-//                        Text("\(meal.title)")
-//                            .font(.custom("DalaFloda-Medium", size: 30, relativeTo: .title2))
+                    HStack{
+                        Text("\(meal.title)")
+                            .font(.custom("DalaFloda-Medium", size: 60, relativeTo: .title2))
+                            .foregroundStyle(Color.white)
+                        Spacer()
+                    }.padding([.top,.leading])
+                        .padding(.leading,50)
 //                            .fontWeight(.bold)
 //                            .foregroundColor(.gray0)
 //                            .padding(.trailing, 15)
