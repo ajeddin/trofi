@@ -22,7 +22,7 @@ struct galleryView: View {
           NavigationStack {
               ScrollView {
                   
-                  let gridItemSize = (geoProx.size.width - 2 * 3) / 3 // 3 columns with 2 points of spacing between them
+                  let gridItemSize = (geoProx.size.width - 2 * 3) / 3
                   LazyVGrid(columns: [GridItem(.adaptive(minimum: gridItemSize), spacing: 2)], spacing: 2) {
                       ForEach(meals) { meal in
                           if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {

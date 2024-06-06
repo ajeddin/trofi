@@ -124,50 +124,48 @@ extension homePage {
     var lowFidelity: some View {
         
         NavigationStack{
-            ZStack(alignment: .bottom) {
-                VStack{
+            ZStack( content:
                     
-                    VStack(alignment: .center) {
-                        HStack{
-                            Text("trofi")
-                                .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
-                                .kerning(4)
-                            //                            .background(Color.backGround)
-                            Spacer()
-                        }
-                        .padding(.leading,5)
-                        //
-                        
-                        Divider().frame(height: 0.5).background(.backGround)
-                        ZStack{
-                            Color.accentColor.opacity(0.1).cornerRadius(14)
-                            
-                            
-                            DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-                            //                        .padding(.horizontal)
-                                .datePickerStyle(.graphical)
-                        }
-                        //                    .background(Color("AccentColor").opacity(0.1))
-                        //                    Divider()
-                        Spacer()
-                        
-                    }
-                    .padding(.top, 24)
-                    //
-                    //                    Divider().frame(height: 0.5).background(.backGround)
-                   
+                    {
+                     VStack{
+                         
+                         VStack{
+                             HStack{
+                                 Text("trofi")
+                                     .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
+                                     .kerning(4)
+                                 
+                                 Spacer()
+                             }.padding([.leading,.top],10)
+                             //
+                             
+                             Divider().frame(height: 1)
+                             ZStack{
+                                 Color.accentColor.opacity(0.1).cornerRadius(14)
+                                 
+                                 DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+                                     .datePickerStyle(.graphical)
+
+//                                     .frame(width: geoProx.size.width/1.2, height: geoProx.size.height/2.5, alignment: .center)
+//                                      .clipped()
+
+                             }
+                             .padding([.leading,.trailing])
+                             
+                         }.frame(maxHeight: geoProx.size.height/1.4)
+
                         List{
                             Section{
                                     ForEach(meals, id: \.id) { meal in
                                         if (calendar.isDate(meal.date, inSameDayAs: selectedDate)){
-                                            NavigationLink(destination: loggedMealView(meal: meal)) {
+                                            NavigationLink(destination: DetailedMealView(meal: meal)) {
                                                 Rectangle().frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5).hidden()
-                                            }.overlay{
+                                            }                                            .scrollContentBackground(.hidden)
+
+                                            .overlay{
                                                 LoggedMealsScroll(meal: meal, geoProx: geoProx)
                                                     .overlay{
                                                         Color.gray.opacity(0.1)
-//                                                            .frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5)
-//                                                            .cornerRadius(25)
                                                     }
                                             }
                                             
@@ -192,9 +190,10 @@ extension homePage {
 //                    .frame(maxWidth: .infinity)
                     
                     .scrollIndicators(.hidden)
-                }
+                }                                            .scrollContentBackground(.hidden)
+
                 
-            }
+            })
         }
     }
     func delete(_ indexSet: IndexSet) {
@@ -262,10 +261,12 @@ struct LoggedMealsScroll: View {
                 } }}
     }
 }
-//struct HomeView_Preview: PreviewProvider {
-//    @Namespace static var namespace
-//    static var previews: some View {
-//        homePage(namespace: namespace, )
-//            .environmentObject(HomeViewModel())
-//    }
-//}
+struct HomeView_Preview: PreviewProvider {
+    @Namespace static var namespace
+    static var previews: some View {
+        GeometryReader{ geoProx in
+            homePage(namespace: namespace, geoProx: geoProx )
+                .environmentObject(HomeViewModel())
+        }
+    }
+}

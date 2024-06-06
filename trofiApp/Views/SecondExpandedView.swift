@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct SecondExpandedView: View {
-    
+    @State var searchQuery = ""
+
     var namespace: Namespace.ID
     var geoProx : GeometryProxy
 
@@ -17,8 +18,8 @@ struct SecondExpandedView: View {
     @State private var appear: Bool = false
     @EnvironmentObject var viewModel: HomeViewModel
     @Environment(\.modelContext) private var context
-    @ObservedObject var networkManager = NetworkManager()
-        @State private var searchQuery = ""
+    @ObservedObject var networkManager : NetworkManager
+
         var body: some View {
             NavigationStack {
                 
@@ -60,14 +61,18 @@ struct SecondExpandedView: View {
                             .padding()
                             VStack(spacing: 16) {
                                 
-                                VStack{
-                                    VStack {
                                         TextField("Search for recipes", text: $searchQuery, onCommit: {
                                             networkManager.fetchRecipes(query: searchQuery)
-                                        }).background(Color("backgroundColor"))
+                                            
+                                        }).background(Color("backgroundColor")).submitLabel(.done)
+                                            
                                         
                                         //                                                    .padding()
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                              
+                                        
+                                        
+                                        
                                         
                                         List(networkManager.recipes) { recipe in
                                             NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
@@ -93,11 +98,11 @@ struct SecondExpandedView: View {
                                             .scrollContentBackground(.hidden)
 
                                         }.scrollContentBackground(.hidden)
-                                    }
-                                    Spacer()
+                                    
+//                                    Spacer()
                                     
                                     
-                                }
+                                
                             }
                             .padding(.horizontal, 15)
                             .padding(.top, 5)
@@ -183,13 +188,14 @@ struct SecondExpandedView: View {
         }
     }
 
-struct SecondExpandedView_Preview: PreviewProvider {
-    @Namespace static var namespace
-    
-    static var previews: some View {
-        GeometryReader{geoProx in
-            SecondExpandedView(namespace: namespace, geoProx: geoProx)
-                .environmentObject(HomeViewModel())
-        }
-    }
-}
+//struct SecondExpandedView_Preview: PreviewProvider {
+//    @Namespace static var namespace
+//    
+//    static var previews: some View {
+//        GeometryReader{geoProx in
+//            SecondExpandedView(namespace: namespace, geoProx: geoProx)
+//                .environmentObject(HomeViewModel())
+//        }
+//    }
+//}
+

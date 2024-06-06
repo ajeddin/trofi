@@ -10,8 +10,8 @@ import SwiftData
 struct ContentView: View {
     @StateObject var viewModel = HomeViewModel()
     @StateObject var viewModelTwo = HomeViewModel()
-    @StateObject var sharedInsightsModel = InsightsModel()
-    
+    @ObservedObject var networkManager = NetworkManager()
+
     
     @Namespace var namespace
     @Namespace var namespace3
@@ -35,9 +35,8 @@ struct ContentView: View {
                     .tabItem {
                         Label("Insights", systemImage: "chart.xyaxis.line")}
                     .toolbar(.hidden, for: .tabBar)
-                    .environmentObject(sharedInsightsModel)
                 
-                recipeView(namespace: namespace, geoProx: geoProx)
+                recipeView(namespace: namespace, geoProx: geoProx, networkManager: networkManager)
                     .environmentObject(viewModelTwo)
                 
                     .tabItem {
@@ -60,7 +59,7 @@ struct ContentView: View {
                 insightsView (geoProx: geoProx)
                     .tabItem {
                         Label("Insights", systemImage: "chart.xyaxis.line")}
-                recipeView(namespace: namespace ,geoProx: geoProx)
+                recipeView(namespace: namespace, geoProx: geoProx, networkManager: networkManager)
                     .environmentObject(viewModelTwo)
                 
                     .tabItem {

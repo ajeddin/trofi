@@ -18,6 +18,7 @@ struct recipeView: View {
     @Query private var recipes: [RecipeData]
     var namespace: Namespace.ID
     var geoProx : GeometryProxy
+    @ObservedObject var networkManager : NetworkManager
 
 
     var body: some View {
@@ -31,7 +32,7 @@ struct recipeView: View {
                      if let index = viewModelTwo.selectedExpandIndex {
                          switch index {
                          case 0:
-                             SecondExpandedView(namespace: namespace, geoProx: geoProx)
+                             SecondExpandedView(namespace: namespace, geoProx: geoProx, networkManager: networkManager)
 //                         case 1:
 //                             SecondExpandedView(namespace: namespace)
 //
@@ -138,11 +139,18 @@ extension recipeView {
                                     .font(.subheadline)
                                     .foregroundColor(.backGround)
                             }
-                        }
-                    }                                            .scrollContentBackground(.hidden)
+                        }  .swipeActions {
+                            Button(action:
+                                    { 
+                                context.delete(recipe)
+                                try? context.save()
+                            }) {
+                                Label("", systemImage: "trash")
+                            }
+                            .tint(.red)}
+                    } .scrollContentBackground(.hidden)
 
                 }.scrollContentBackground(.hidden)
-
                 
             }
             .frame(maxWidth: .infinity)
@@ -157,14 +165,7 @@ extension recipeView {
     }
 }
 
-//struct recipeView_Preview: PreviewProvider {
-//    @Namespace static var namespace
-//    
-//    static var previews: some View {
-//        recipeView(namespace: namespace)
-//            .environmentObject(HomeViewModel())
-//    }
-//}
+
 
 struct RecipeDetail: View {
     let recipe: RecipeData
@@ -199,3 +200,14 @@ struct RecipeDetail: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
+//struct recipeView_Preview: PreviewProvider {
+//    @Namespace static var namespace
+//
+//    static var previews: some View {
+//        GeometryReader{geoProx in
+//            recipeView(namespace: namespace, geoProx: geoProx)
+//                .environmentObject(HomeViewModel())
+//        }
+//    }
+//}
