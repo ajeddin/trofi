@@ -175,26 +175,49 @@ struct RecipeDetail: View {
         VStack {
             AsyncImage(url: URL(string: recipe.imageData)) { image in
                 image.resizable()
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(15)
+                .shadow(radius: 10)
+
+
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 50, height: 50)
+//            .frame(width: 50, height: 50)
             .clipShape(RoundedRectangle(cornerRadius: 45))
 
           
             Text(recipe.title)
                 .font(.largeTitle)
+                .fontWeight(.bold)
                 .padding()
-            Text(recipe.descriptionMeal)
-                .font(.caption)
-                .padding()
-            Text("Source: \(recipe.recipeSource)")
-                .font(.subheadline)
-                .padding()
+            VStack(alignment: .leading, spacing: 15) {
+                Text("Ingredients")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .padding(.bottom, 10)
 
+//                             List of ingredients
+                            ForEach(recipe.descriptionMeal, id: \.self) { ingredient in
+                                Text(ingredient)
+                                    .font(.body)
+                                    .padding(.top, 2)
+                                    .padding(.leading, 5)
+                            }
+                Text("Source: \(recipe.recipeSource)")
+                    .padding()
+//                    .background(Color.foreGround)
+//                    .cornerRadius(10)
+//                    .shadow(radius: 5)
+            }
             Link("View Recipe", destination: URL(string: recipe.recipeLink)!)
                 .font(.title2)
                 .padding()
+                .background(Color.foreGround)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+                .padding(.bottom, 10)
+
         }
         .navigationTitle("Recipe Details")
         .navigationBarTitleDisplayMode(.inline)

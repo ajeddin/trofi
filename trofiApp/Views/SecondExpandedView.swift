@@ -168,7 +168,7 @@ struct SecondExpandedView: View {
             .navigationTitle("Recipe Details")
             .toolbar {
                                 Button {
-                                    let recipeData = RecipeData(imageData: recipe.image,title: recipe.label, descriptionMeal: "Fixing", recipeLink: recipe.url, recipeSource: recipe.source)
+                                    let recipeData = RecipeData(imageData: recipe.image,title: recipe.label, descriptionMeal: recipe.ingredientLines, recipeLink: recipe.url, recipeSource: recipe.source)
                                     
                                     context.insert(recipeData)
                                     try? context.save()

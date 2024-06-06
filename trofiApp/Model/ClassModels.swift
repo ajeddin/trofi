@@ -37,11 +37,11 @@ class RecipeData : Identifiable{
     var id : String =  ""
     var imageData: String = "";
     var title:String = "";
-    var descriptionMeal : String = ""
+    var descriptionMeal : [String] = [""]
     var recipeLink : String = ""
     var recipeSource: String = ""
 
-    init( imageData: String ,  title: String, descriptionMeal: String, recipeLink: String, recipeSource: String ) {
+    init( imageData: String ,  title: String, descriptionMeal: [String], recipeLink: String, recipeSource: String ) {
         self.id = UUID().uuidString
         self.imageData = imageData
         self.title = title
