@@ -64,56 +64,109 @@ struct galleryView: View {
 
 struct DetailedMealView: View {
     var meal: LoggedMeals
-
+    
     var body: some View {
         VStack {
             if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .cornerRadius(15)
+                    .shadow(radius: 10)
+//                    .padding()
             } else {
                 Rectangle()
                     .fill(Color.gray)
                     .frame(height: 200)
-            }
-            HStack{
-                Text(meal.title)
-                    .font(.largeTitle)
-                    .padding()
-                Text ("\(meal.rating, specifier: "%.1f")")
-                Image(systemName: "star.square")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 25, height: 20)
-                    .foregroundColor(.accentColor)
+                    .cornerRadius(15)
+//                    .padding()
+                
             }
             
             Text(meal.date, format: .dateTime.day().month().year())
+                .font(.headline)
+                .padding(5)
+            Text(meal.title)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+//                .padding()
             
-            Text(meal.type)
-           
-            Spacer()
             
-            VStack{
-                Text("Notes: \(meal.descriptionMeal)")
+            
+            VStack(alignment: .leading, spacing: 10) {
+                
+
+                    
+                Text(meal.type)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.top, 10)
+               
+                Text("Notes:")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.top, 10)
+                
+                Text(meal.descriptionMeal)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
                     .shadow(radius: 5)
                 
-                Spacer()
+                Text("Recipe Link:")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.top, 10)
                 
-                Text(meal.recipeLink)
-                
+                HStack{   if let url = URL(string: meal.recipeLink) {
+                    
+                    Link(destination: url) {
+                        Text(meal.recipeLink)
+                            .foregroundColor(.blue)
+                            .underline()
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                } else {
+                    Text(meal.recipeLink)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                }
+                    Spacer()
+                    HStack{
+                        Text ("\(meal.rating, specifier: "%.1f")")
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .padding(.trailing, 5)
+                        Image(systemName: "star.square")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.accentColor)
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                }
                 Spacer()
-                Spacer()
+
             }
-            .multilineTextAlignment(.leading)
+            .padding()
+            
+            Spacer()
+            
         }
         .padding()
+        .background(Color(UIColor.systemGroupedBackground))
+        .navigationBarTitle(Text(meal.title), displayMode: .inline)
     }
+    
 }
-
 #Preview {
     GeometryReader{ geoProx in
         galleryView(geoProx: geoProx)

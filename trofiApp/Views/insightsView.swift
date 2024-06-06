@@ -44,21 +44,28 @@ struct insightsView: View {
                 Text("Insights")
                     .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
                     .padding(.bottom)
-                
-                InsightCard(title: "Total Number of Meals Logged", value: "\(sharedInsightsModel.totalMealsLogged)")
-                InsightCard(title: "Total Number of Recipes Added", value: "\(sharedInsightsModel.totalRecipesAdded)")
-                
-                VStack(alignment: .leading) {
-                    Text("Average Rating Over Time")
-                        .font(.headline)
-                    LineChartView(data: sharedInsightsModel.averageRatingData)
-                        .frame(height: 200)
+                HStack{
+                    
+                    InsightCard(title: "# of Meals Logged", value: "\(sharedInsightsModel.totalMealsLogged)")
+                    InsightCard(title: "# of Recipes Added", value: "\(sharedInsightsModel.totalRecipesAdded)")
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 5)
+                HStack{
+                    
+                    InsightCard(title: "Highest Rated Dish", value: sharedInsightsModel.highestRatedDish)
+                    InsightCard(title: "Lowest Rated Dish ", value: sharedInsightsModel.lowestRatedDish)
+                }
                 
+//                VStack(alignment: .leading) {
+//                    Text("Average Rating Over Time")
+//                        .font(.headline)
+//                    LineChartView(data: sharedInsightsModel.averageRatingData)
+//                        .frame(height: 200)
+//                }
+//                .padding()
+//                .background(Color.white)
+//                .cornerRadius(10)
+//                .shadow(radius: 5)
+//                
                 
                 
                 VStack(alignment: .leading) {
@@ -68,14 +75,18 @@ struct insightsView: View {
                         .frame(height: 200)
                 }
                 .padding()
-                .background(Color.white)
+                .background(Color.foreGround)
                 .cornerRadius(10)
                 .shadow(radius: 5)
                 
-                InsightCard(title: "Highest Rated Dish", value: sharedInsightsModel.highestRatedDish)
-                InsightCard(title: "Lowest Rated Dish", value: sharedInsightsModel.lowestRatedDish)
+             
             }
             .padding()
+            
+            Spacer()
+            
+            Text("More Features To Come. \n         Stay Tuned :)").bold().shadow(radius: 1)                .foregroundColor(Color.backGround)
+
         }
         .onAppear {
 
@@ -94,13 +105,16 @@ struct InsightCard: View {
         VStack(alignment: .leading) {
             Text(title)
                 .font(.headline)
+                .foregroundColor(Color.backGround)
+
+//            Color.backGround
             Text(value)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.accentColor)
         }
         .padding()
-        .background(Color.white)
+        .background(Color.foreGround)
         .cornerRadius(10)
         .shadow(radius: 5)
 //        .foregroundColor(Color("accentColor"))
@@ -108,25 +122,25 @@ struct InsightCard: View {
     }
 }
 
-struct LineChartView: View {
-    var data: [RatingData]
-        
-        var body: some View {
-            Chart(data) { point in
-                LineMark(
-                    x: .value("Date", point.date),
-                    y: .value("Rating", point.rating)
-                )
-            }
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .day)) { value in
-                    AxisValueLabel(format: .dateTime.day().month().year(), centered: true)
-                    AxisTick(centered: true)
-                    AxisGridLine(centered: true)
-                }
-            }
-        }
-    }
+//struct LineChartView: View {
+//    var data: [RatingData]
+//        
+//        var body: some View {
+//            Chart(data) { point in
+//                LineMark(
+//                    x: .value("Date", point.date),
+//                    y: .value("Rating", point.rating)
+//                )
+//            }
+//            .chartXAxis {
+//                AxisMarks(values: .stride(by: .day)) { value in
+//                    AxisValueLabel(format: .dateTime.day().month().year(), centered: true)
+//                    AxisTick(centered: true)
+//                    AxisGridLine(centered: true)
+//                }
+//            }
+//        }
+//    }
 
 
 struct BarChartView: View {
