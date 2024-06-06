@@ -18,7 +18,7 @@ struct homePage: View {
     var namespace: Namespace.ID
     let calendar = Calendar.current
     var geoProx : GeometryProxy
-
+    @State var counter = 0;
     
     let section: [ExpandSection] = []
     
@@ -127,69 +127,92 @@ extension homePage {
             ZStack( content:
                     
                     {
-                     VStack{
-                         
-                         VStack{
-                             HStack{
-                                 Text("trofi")
-                                     .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
-                                     .kerning(4)
-                                 
-                                 Spacer()
-                             }.padding([.leading,.top],10)
-                             //
-                             
-                             Divider().frame(height: 1)
-                             ZStack{
-                                 Color.accentColor.opacity(0.1).cornerRadius(14)
-                                 
-                                 DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-                                     .datePickerStyle(.graphical)
-
-//                                     .frame(width: geoProx.size.width/1.2, height: geoProx.size.height/2.5, alignment: .center)
-//                                      .clipped()
-
-                             }
-                             .padding([.leading,.trailing])
-                             
-                         }.frame(maxHeight: geoProx.size.height/1.4)
-
-                        List{
-                            Section{
-                                    ForEach(meals, id: \.id) { meal in
-                                        if (calendar.isDate(meal.date, inSameDayAs: selectedDate)){
-                                            NavigationLink(destination: DetailedMealView(meal: meal)) {
-                                                Rectangle().frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5).hidden()
-                                            }                                            .scrollContentBackground(.hidden)
-
-                                            .overlay{
-                                                LoggedMealsScroll(meal: meal, geoProx: geoProx)
-                                                    .overlay{
-                                                        Color.gray.opacity(0.25)
-                                                    }
-                                            }
-                                            
-                                            .scrollContentBackground(.hidden)
-                                            
-                                            
-                                                .buttonStyle(.plain)
-                                            
-                                            
-                                        }
-                                        
-                                    } .onDelete(perform: delete)
-                                    
-                                
-                                    
-                                }header: {
-                                
-                                Text("Logged Meals")
-                            }
-                                
-                    }.scrollContentBackground(.hidden)
-//                    .frame(maxWidth: .infinity)
+                VStack{
                     
-                    .scrollIndicators(.hidden)
+                    VStack{
+                        HStack{
+                            Text("trofi")
+                                .font(.custom("DalaFloda-Medium", size: 36, relativeTo: .title))
+                                .kerning(4)
+                            
+                            Spacer()
+                        }.padding([.leading,.top],10)
+                        //
+                        
+                        Divider().frame(height: 1)
+                        ZStack{
+                            Color.accentColor.opacity(0.1).cornerRadius(14)
+                            
+                            DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+                                .datePickerStyle(.graphical)
+                            
+                            //                                     .frame(width: geoProx.size.width/1.2, height: geoProx.size.height/2.5, alignment: .center)
+                            //                                      .clipped()
+                            
+                        }
+                        .padding([.leading,.trailing])
+                        
+                    }.frame(maxHeight: geoProx.size.height/1.4)
+                    let filteredMeals = meals.filter { calendar.isDate($0.date, inSameDayAs: selectedDate) }
+                    
+                    if filteredMeals.isEmpty{
+                        
+                        Rectangle().frame(width: geoProx.size.width/1.15, height: geoProx.size.height/2.2).hidden()
+                            .overlay(
+                                HStack{
+                                    
+                                    VStack{
+                                        Image("logoOutside").resizable().scaledToFit().clipShape(Circle()).frame(width: geoProx.size.width/1.5, height: geoProx.size.height/8)
+                                            
+                                        Text("Log Meal :)")
+                                            .font(.title)
+//                                            .bold()
+                                            .padding(.top)
+                                    }
+                                    
+                                }
+                            )
+                    }
+                    else{
+                    List{
+                        Section{
+                            ForEach(meals, id: \.id) { meal in
+                                
+                                if (calendar.isDate(meal.date, inSameDayAs: selectedDate)){
+                                    
+                                    NavigationLink(destination: DetailedMealView(meal: meal)) {
+                                        Rectangle().frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5).hidden()
+                                    }                                            .scrollContentBackground(.hidden)
+                                    
+                                        .overlay{
+                                            LoggedMealsScroll(meal: meal, geoProx: geoProx)
+                                                .overlay{
+                                                    Color.gray.opacity(0.25)
+                                                }
+                                        }
+                                    
+                                        .scrollContentBackground(.hidden)
+                                    
+                                    
+                                        .buttonStyle(.plain)
+                                    
+                                    
+                                }
+                                
+                            } .onDelete(perform: delete)
+                            
+                            
+                            
+                        }header: {
+                            
+                            Text("Logged Meals")
+                        }
+                        
+                    }.scrollContentBackground(.hidden)
+                    //                    .frame(maxWidth: .infinity)
+                    
+                        .scrollIndicators(.hidden)
+                }
                 }                                            .scrollContentBackground(.hidden)
 
                 
@@ -234,11 +257,11 @@ struct LoggedMealsScroll: View {
 //                        
                     HStack{
                         Text("\(meal.title)")
-                            .font(.custom("DalaFloda-Medium", size: 60, relativeTo: .title2))
+                            .font(.custom("DalaFloda-Medium", size: 35, relativeTo: .title2))
                             .foregroundStyle(Color.white)
                         Spacer()
                     }.padding([.top,.leading])
-                        .padding(.leading,50)
+                        .padding(.leading,20)
 //                            .fontWeight(.bold)
 //                            .foregroundColor(.gray0)
 //                            .padding(.trailing, 15)

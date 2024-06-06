@@ -241,33 +241,33 @@ struct FirstExpandedView: View {
                                 }
                                 context.insert(loggedMeal)
                                 
-                            for num in 1...20{
-                                var loggedMeal = LoggedMeals(type: "Homecooked", price: 223, title: "\(title)", descriptionMeal: "\(notes)", recipeLink: "\(recipe)",rating: Float(rating))
-                                let dateFormatter = DateFormatter()
-
-                                var specificDate: Date {
-                                       // Define the components of the date
-                                       var dateComponents = DateComponents()
-                                       dateComponents.year = 2024
-                                       dateComponents.month = 5
-                                       dateComponents.day = num+10
-                                       
-                                       // Create the date using the current calendar
-                                       let calendar = Calendar.current
-                                       return calendar.date(from: dateComponents) ?? Date()
-                                   }
-                                loggedMeal.date = specificDate
-                                if let imageUnwrapped = selectedImage{
-                                    loggedMeal.imageData = imageUnwrapped.pngData()
-                                    
-                                }
-                                else{
-                                    print("No Image")
-                                }
-                                context.insert(loggedMeal)
-
-
-                            }
+//                            for num in 1...20{
+//                                var loggedMeal = LoggedMeals(type: "Homecooked", price: 223, title: "\(title)", descriptionMeal: "\(notes)", recipeLink: "\(recipe)",rating: Float(rating))
+//                                let dateFormatter = DateFormatter()
+//
+//                                var specificDate: Date {
+//                                       // Define the components of the date
+//                                       var dateComponents = DateComponents()
+//                                       dateComponents.year = 2024
+//                                       dateComponents.month = 5
+//                                       dateComponents.day = num+10
+//                                       
+//                                       // Create the date using the current calendar
+//                                       let calendar = Calendar.current
+//                                       return calendar.date(from: dateComponents) ?? Date()
+//                                   }
+//                                loggedMeal.date = specificDate
+//                                if let imageUnwrapped = selectedImage{
+//                                    loggedMeal.imageData = imageUnwrapped.pngData()
+//                                    
+//                                }
+//                                else{
+//                                    print("No Image")
+//                                }
+//                                context.insert(loggedMeal)
+//
+//
+//                            }
                             
                             
                             

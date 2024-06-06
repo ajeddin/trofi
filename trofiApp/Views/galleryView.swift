@@ -129,14 +129,7 @@ struct DetailedMealView: View {
                     .background(Color.white)
                     .cornerRadius(10)
                     .shadow(radius: 5)
-                } else {
-                    Text(meal.recipeLink)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
                 }
-                    Spacer()
                     HStack{
                         Text ("\(meal.rating, specifier: "%.1f")")
                             .font(.caption)
@@ -152,6 +145,8 @@ struct DetailedMealView: View {
                     .background(Color.white)
                     .cornerRadius(10)
                     .shadow(radius: 5)
+                    Spacer()
+
                 }
                 Spacer()
 
