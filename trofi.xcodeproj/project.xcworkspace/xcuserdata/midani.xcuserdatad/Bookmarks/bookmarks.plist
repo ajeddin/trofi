@@ -18,7 +18,7 @@
 					<key>StartingLineNumber</key>
 					<string>135</string>
 					<key>Timestamp</key>
-					<string>739290439.263418</string>
+					<string>739294631.235459</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -34,16 +34,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>             BarMark(
+				<string>         Chart(data) { point in
 </string>
 				<key>leading</key>
-				<string>     var body: some View {
-         Chart(data) { point in
+				<string>     
+     var body: some View {
 </string>
 				<key>trailing</key>
-				<string>                 x: .value("Day", point.period),
+				<string>             BarMark(
+                 x: .value("Day", point.period),
                  y: .value("Count", point.count)
-             )
 </string>
 			</dict>
 			<key>type</key>

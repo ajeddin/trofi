@@ -228,9 +228,9 @@ struct FirstExpandedView: View {
                         withAnimation(.spring(response: 0.28, dampingFraction: 1.2)) {
                             HapticManager.instance.impact(style: .light)
                             viewModel.selectedExpandIndex = nil
-                            var loggedMeal = LoggedMeals(type: "h", price: 223, title: "\(title)", descriptionMeal: "\(notes)", recipeLink: "\(recipe)",rating: Float(rating))
+                            var loggedMeal = LoggedMeals(type: "Homecooked", price: 223, title: "\(title)", descriptionMeal: "\(notes)", recipeLink: "\(recipe)",rating: Float(rating))
                             if (selection == 1){
-                                loggedMeal.type = "r"
+                                loggedMeal.type = "Restaurant"
                             }
                                 if let imageUnwrapped = selectedImage{
                                     loggedMeal.imageData = imageUnwrapped.pngData()

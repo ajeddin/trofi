@@ -21,28 +21,38 @@ struct galleryView: View {
       var body: some View {
           NavigationStack {
               ScrollView {
-                  LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
+                  
+                  let gridItemSize = (geoProx.size.width - 2 * 3) / 3 // 3 columns with 2 points of spacing between them
+                  LazyVGrid(columns: [GridItem(.adaptive(minimum: gridItemSize), spacing: 2)], spacing: 2) {
                       ForEach(meals) { meal in
                           if let imageData = meal.imageData, let uiImage = UIImage(data: imageData) {
                               Image(uiImage: uiImage)
                                   .resizable()
                                   .aspectRatio(contentMode: .fill)
-                                  .frame(width: 100, height: 100)
+                                  .frame(width: gridItemSize, height: gridItemSize)
+
+//                                  .frame(width: 100, height: 100)
+//                                  .frame(width: geoProx.size.width/1.1, height: geoProx.size.height/5.5)
+
                                   .clipped()
+                                  .contentShape(Rectangle()) // Ensure the tappable area is the same as the image
+
                                   .onTapGesture {
                                       selectedMeal = meal
                                   }
                           } else {
                               Rectangle()
                                   .fill(Color.gray)
-                                  .frame(width: 100, height: 100)
+                                  .frame(width: gridItemSize, height: gridItemSize)
+                                  .contentShape(Rectangle()) // Ensure the tappable area is the same as the rectangle
+
                                   .onTapGesture {
                                       selectedMeal = meal
                                   }
                           }
                       }
                   }
-                  .padding()
+                  .padding(.horizontal, 1)
               }
               .navigationTitle("Meal Gallery")
               .sheet(item: $selectedMeal) { meal in
@@ -66,20 +76,10 @@ struct DetailedMealView: View {
                     .fill(Color.gray)
                     .frame(height: 200)
             }
-            
-            Text(meal.date, format: .dateTime.day().month().year())
-            
-            Text(meal.title)
-                .font(.largeTitle)
-                .padding()
-            
-            
-            Text(meal.descriptionMeal)
-                .padding()
-            
-            
-            Text(meal.type)
             HStack{
+                Text(meal.title)
+                    .font(.largeTitle)
+                    .padding()
                 Text ("\(meal.rating, specifier: "%.1f")")
                 Image(systemName: "star.square")
                     .resizable()
@@ -88,10 +88,27 @@ struct DetailedMealView: View {
                     .foregroundColor(.accentColor)
             }
             
-       
+            Text(meal.date, format: .dateTime.day().month().year())
             
-            Text(meal.recipeLink)
+            Text(meal.type)
+           
             Spacer()
+            
+            VStack{
+                Text("Notes: \(meal.descriptionMeal)")
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                
+                Spacer()
+                
+                Text(meal.recipeLink)
+                
+                Spacer()
+                Spacer()
+            }
+            .multilineTextAlignment(.leading)
         }
         .padding()
     }
