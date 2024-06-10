@@ -1,4 +1,4 @@
-# trofiApp
+# trofi
 
 An app for inspiring homecooks who want to track their culinary growth by logging dishes and storing new and favorite recipes to foster continous improvment and enjoyment on their culinary journy 
 
